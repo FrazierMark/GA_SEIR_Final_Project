@@ -196,7 +196,7 @@ const Water = () => {
     const water = useLoader(THREE.TextureLoader, 'assets/textures/water.jpeg')
     return (
         <mesh geometry={cylinderGeo} position={[0, MAX_HEIGHT * 0.1, 0]} castShadow={true} receiveShadow={true}>
-            <meshPhysicalMaterial envMap={envMap} color="#55aaff" ior={1.4} transmission={1} transparent={true} thickness={.2} envMapIntensity={0.2} roughness={2} roughnessMap={water} metalnessMap={water} />
+            <meshPhysicalMaterial envMap={envMap} color="#55aaff" ior={1} transmission={1} transparent={true} thickness={.2} envMapIntensity={0.2} roughness={2} roughnessMap={water} metalnessMap={water} />
             {/* <waveShaderMaterial uColor={"hotpink"} ref={ref} uTexture={water} /> */}
         </mesh>
     )
