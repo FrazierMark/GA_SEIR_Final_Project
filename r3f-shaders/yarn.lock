@@ -9387,6 +9387,11 @@
   "resolved" "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz"
   "version" "0.2.0"
 
+"three-geo@^1.4.4":
+  "integrity" "sha512-fT0ZloFGo9MTnTXAbSzMlwrv0fJs0BfIzgN18+fAwjdutYvT8GnkSpbAaX/lRv2vMbfxBsrZNqkq070BQZ+vHA=="
+  "resolved" "https://registry.npmjs.org/three-geo/-/three-geo-1.4.4.tgz"
+  "version" "1.4.4"
+
 "three-mesh-bvh@^0.5.7":
   "integrity" "sha512-yOJPT3DhfZB/DvIr0lEfPUPMRX11HJABGapeuBa4GwgsF1NMMsy1nW1wMGxImmVyRCZ61yoor/YVqRRQV1p5VQ=="
   "resolved" "https://registry.npmjs.org/three-mesh-bvh/-/three-mesh-bvh-0.5.10.tgz"
