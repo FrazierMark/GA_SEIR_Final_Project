@@ -13,9 +13,7 @@ const GeoMap = () => {
     const [zoom, setZoom] = useState(1.5);
 
     useEffect(() => {
-        // create the map and configure it
-        // check out the API reference for more options
-        // https://docs.mapbox.com/mapbox-gl-js/api/map/
+        // create the map and configure,
         const map = new mapboxgl.Map({
             container: mapContainer.current,
             style: "mapbox://styles/mapbox/satellite-streets-v11",
@@ -34,8 +32,6 @@ const GeoMap = () => {
         });
 
         // only want to work with the map after it has fully loaded
-        // if you try to add sources and layers before the map has loaded
-        // things will not work properly
         map.on("load", async () => {
             // add mapbox terrain dem source for 3d terrain rendering
             map.addSource("mapbox-dem", {
