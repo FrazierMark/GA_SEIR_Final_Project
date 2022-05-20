@@ -8,8 +8,9 @@ const App = () => {
 
   return (
     <>
-      {/* <Scene /> */}
       <GeoMap />
+      <Scene />
+
     </>
   )
 }

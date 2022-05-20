@@ -25,6 +25,24 @@ const GeoMap = () => {
         // Add navigation control (the +/- zoom buttons)
         map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
+        // map.addControl(new mapboxgl.GeolocateControl({
+        //     positionOptions: {
+        //     enableHighAccuracy: true
+        //     },
+        //     trackUserLocation: true,
+        //     showUserHeading: true
+        // }));
+
+        var markers = { "type": "FeatureCollection", "features": [{ "type": "Feature", "properties": { "title": "Site Gallery", "url": "\/Freelance\/art-sheffield-2016\/programme\/site-gallery\/", "summary": "Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Donec id justo. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Suspendisse feugiat. Etiam rhoncus.", "image": "\/Freelance\/art-sheffield-2016\/site\/assets\/files\/1032\/site_gallery.jpg", "marker-symbol": "venue-map-icon-blue", "colour": "blue" }, "geometry": { "type": "Point", "coordinates": ["-1.466439", "53.376842"] } }, { "type": "Feature", "properties": { "title": "Moore Street Substation", "url": "\/Freelance\/art-sheffield-2016\/programme\/moore-street-substation\/", "summary": "", "image": null, "marker-symbol": "venue-map-icon-green", "colour": "green" }, "geometry": { "type": "Point", "coordinates": ["-1.477881", "53.374798"] } }, { "type": "Feature", "properties": { "title": "S1 Artspace", "url": "\/Freelance\/art-sheffield-2016\/programme\/s1-artspace\/", "summary": "", "image": null, "marker-symbol": "venue-map-icon-red", "colour": "red" }, "geometry": { "type": "Point", "coordinates": ["-1.459620", "53.380562"] } }] };
+
+        var bounds = new mapboxgl.LngLatBounds();
+
+        markers.features.forEach(function (feature) {
+            bounds.extend(feature.geometry.coordinates);
+        });
+
+        map.fitBounds(bounds);
+
         map.on('move', () => {
             setLng(map.getCenter().lng.toFixed(4));
             setLat(map.getCenter().lat.toFixed(4));
@@ -77,7 +95,7 @@ const GeoMap = () => {
             <div className="long_lat_bar">
                 Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
             </div>
-            <div ref={mapContainer} style={{ width: "100%", height: "100vh" }} />
+            <div ref={mapContainer} style={{ width: "50%", height: "50vh" }} />
         </div>
     )
 };
