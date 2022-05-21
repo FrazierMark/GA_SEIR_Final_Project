@@ -9,13 +9,14 @@ const Plane = ({ size, position, matCapTexture }) => {
   useEffect(() => {
     const createTerrain = async () => {
       try {
-        const rawTiff = await GeoTIFF.fromUrl("./test2.pngraw");
+        const rawTiff = await GeoTIFF.fromUrl("./sample.tif");
         const tifImage = await rawTiff.getImage();
         const image = {
           width: tifImage.getWidth(),
           height: tifImage.getHeight(),
         };
-        console.log(image);
+        const data = await tifImage.readRasters({ interleave: true });
+        console.log(data);
       } catch (err) {
         console.log(err);
       }
