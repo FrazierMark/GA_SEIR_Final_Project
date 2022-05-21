@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import Scene from "../Scene";
+import Scene from '../3DMap/3DMap'
 
 console.log(process.env.REACT_APP_MAPBOXGL_TOKEN);
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
@@ -13,7 +13,7 @@ const GeoMap = () => {
   const [zoom, setZoom] = useState(1.5);
 
   useEffect(() => {
-    // create the map and configure,
+    // Creates 2D map
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/satellite-streets-v11",
@@ -39,9 +39,9 @@ const GeoMap = () => {
       setZoom(map.getZoom().toFixed(2));
     });
 
-    // only want to work with the map after it has fully loaded
+    // Only want to work with the map after it has fully loaded
     map.on("load", async () => {
-      // add mapbox terrain dem source for 3d terrain rendering
+      // Add mapbox terrain dem source for 3d terrain rendering
       map.addSource("mapbox-dem", {
         type: "raster-dem",
         url: "mapbox://mapbox.terrain-rgb",
@@ -53,9 +53,7 @@ const GeoMap = () => {
         exaggeration: 1.5,
       });
 
-      // add a sky layer
-      // the sky layer is a custom mapbox layer type
-      // see https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#sky
+      // Add sky layer
       map.addLayer({
         id: "sky",
         type: "sky",
@@ -75,7 +73,7 @@ const GeoMap = () => {
       await map.once("idle");
     });
 
-    // remove map on unmount
+    // Remove map on unmount
     return () => map.remove();
   }, []);
 

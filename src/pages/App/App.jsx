@@ -4,8 +4,7 @@ import "./App.css";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
-import Scene from "../../components/Scene";
-import GeoMap from "../../components/Map/Map";
+import GeoMap from "../../components/2DMap/2DMap";
 
 function App() {
   const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object

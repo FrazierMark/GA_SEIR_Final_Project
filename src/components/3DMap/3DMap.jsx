@@ -16,7 +16,7 @@ import { mergeBufferGeometries } from "three/examples/jsm/utils/BufferGeometryUt
 import { BoxGeometry } from "three";
 import { Vector2 } from "three";
 import SimplexNoise from "simplex-noise";
-import Light from "../components/Light";
+import Light from "./Light";
 import { SphereBufferGeometry } from "three";
 import { Suspense } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
