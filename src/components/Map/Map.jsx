@@ -3,8 +3,8 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Scene from "../Scene";
 
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiZnJhemllcm1hcmsiLCJhIjoiY2wzOTBhZzJiMDFwejNqbzJyMGs0YmZ5NCJ9.2VB9C63HoxzjCpCmbhga9A";
+console.log(process.env.REACT_APP_MAPBOXGL_TOKEN);
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
 const GeoMap = () => {
   const mapContainer = useRef();
