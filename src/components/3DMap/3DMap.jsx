@@ -21,7 +21,7 @@ import { SphereBufferGeometry } from "three";
 import { Suspense } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-import * as GeoTIFF from "geotiff";
+
 
 const HDRI = "assets/envmap.hdr";
 let envMap;

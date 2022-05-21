@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Scene from '../3DMap/3DMap'
+import Plane from "../3DMap/testPlane";
 
 console.log(process.env.REACT_APP_MAPBOXGL_TOKEN);
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
@@ -85,7 +86,8 @@ const GeoMap = () => {
         </div>
         <div ref={mapContainer} style={{ width: "50%", height: "50vh" }} />
       </div>
-      <Scene />
+      {/* <Scene /> */}
+      <Plane />
     </>
   );
 };
