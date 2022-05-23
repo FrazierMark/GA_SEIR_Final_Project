@@ -3,8 +3,8 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Scene from '../3DMap/3DMap'
 import Plane from "../3DMap/testPlane";
+import px from "@mapbox/sphericalmercator";
 
-console.log(process.env.REACT_APP_MAPBOXGL_TOKEN);
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
 const GeoMap = () => {
@@ -12,6 +12,8 @@ const GeoMap = () => {
   const [lng, setLng] = useState(4);
   const [lat, setLat] = useState(34);
   const [zoom, setZoom] = useState(1.5);
+  const [tileInfo, setTileInfo] = useState([]);
+  const [pxData, setPxData] = useState();
 
   useEffect(() => {
     // Creates 2D map
@@ -24,7 +26,7 @@ const GeoMap = () => {
       bearing: 80,
     });
     // Add navigation control (the +/- zoom buttons)
-    map.addControl(new mapboxgl.NavigationControl(), "top-right");
+    map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
 
     // map.addControl(new mapboxgl.GeolocateControl({
     //     positionOptions: {
@@ -38,6 +40,14 @@ const GeoMap = () => {
       setLng(map.getCenter().lng.toFixed(4));
       setLat(map.getCenter().lat.toFixed(4));
       setZoom(map.getZoom().toFixed(2));
+      const ll = [
+        map.getCenter().lng.toFixed(2),
+        map.getCenter().lat.toFixed(2),
+      ];
+      setTileInfo(ll);
+
+      setPxData(px(ll, zoom));
+      console.log(pxData);
     });
 
     // Only want to work with the map after it has fully loaded
@@ -72,6 +82,7 @@ const GeoMap = () => {
       });
 
       await map.once("idle");
+      const ll = [lng, lat];
     });
 
     // Remove map on unmount
@@ -82,7 +93,7 @@ const GeoMap = () => {
     <>
       <div>
         <div className="long_lat_bar">
-          Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+          Longitude: {lng} | Latitude: {lat} | Zoom: {zoom} | {tileInfo}
         </div>
         <div ref={mapContainer} style={{ width: "50%", height: "50vh" }} />
       </div>
