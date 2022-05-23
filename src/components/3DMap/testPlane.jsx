@@ -44,7 +44,7 @@ const Plane = ({ size, position }) => {
 
   const tileToMesh = async () => {
     try {
-      const imageData = await getPixels("./test.png");
+      const imageData = await getPixels("./test2.pngraw");
 
       const planeSize = Math.sqrt(imageData.data.length / 4);
       setPlaneSize(planeSize);

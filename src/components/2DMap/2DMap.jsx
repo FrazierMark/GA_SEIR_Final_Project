@@ -12,9 +12,9 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
 const GeoMap = () => {
   const mapContainer = useRef();
-  const [lng, setLng] = useState(4);
-  const [lat, setLat] = useState(34);
-  const [zoom, setZoom] = useState(1.5);
+  const [lng, setLng] = useState(-136.49);
+  const [lat, setLat] = useState(60.62);
+  const [zoom, setZoom] = useState(30);
   const [tileInfo, setTileInfo] = useState([]);
   const [pxData, setPxData] = useState();
 
@@ -41,10 +41,10 @@ const GeoMap = () => {
     // Search option
     map.addControl(
       new MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-      mapboxgl: mapboxgl
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
       })
-      );
+    );
 
     map.on("move", () => {
       setLng(map.getCenter().lng.toFixed(4));
@@ -85,14 +85,13 @@ const GeoMap = () => {
         },
       });
 
-      
       // Add Fog
       map.setFog({
         range: [-0.5, 20],
         color: "grey",
         "horizon-blend": 0.1,
       });
-
+      tilesApi.getPngTile(lng, lat, zoom);
       await map.once("idle");
     });
 
@@ -105,9 +104,8 @@ const GeoMap = () => {
       <div>
         <div className="long_lat_bar">
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom} | {tileInfo}
-          <button onClick={tilesApi.getPngTile(lng, lat, zoom)}> ONCLIC</button>
         </div>
-        <div ref={mapContainer} style={{ width: "50%", height: "50vh" }} />
+        <div ref={mapContainer} style={{ width: '500px', height: '500px' }} />
       </div>
       {/* <Scene /> */}
       <Plane />
