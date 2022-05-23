@@ -88,7 +88,7 @@ const Plane = ({ size, position }) => {
       const arr1 = new Array(customPlaneGeometry.attributes.position.count);
       const arr = arr1.fill(1);
       arr.forEach((a, index) => {
-        customPlaneGeometry.attributes.position.setZ(index, (heightData[index] / 10) * -1);
+        customPlaneGeometry.attributes.position.setZ(index, (heightData[index] / 30) * -1);
       });
       
 

@@ -3,7 +3,10 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Scene from '../3DMap/3DMap'
 import Plane from "../3DMap/testPlane";
-import px from "@mapbox/sphericalmercator";
+import SphericalMercator from "@mapbox/sphericalmercator";
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+
+import * as tilesApi from "../../utils/tilesApi";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
@@ -35,6 +38,13 @@ const GeoMap = () => {
     //     trackUserLocation: true,
     //     showUserHeading: true
     // }));
+    // Search option
+    map.addControl(
+      new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl
+      })
+      );
 
     map.on("move", () => {
       setLng(map.getCenter().lng.toFixed(4));
@@ -46,8 +56,8 @@ const GeoMap = () => {
       ];
       setTileInfo(ll);
 
-      setPxData(px(ll, zoom));
-      console.log(pxData);
+      // setPxData(px(ll, zoom));
+      // console.log(pxData);
     });
 
     // Only want to work with the map after it has fully loaded
@@ -74,6 +84,8 @@ const GeoMap = () => {
           "sky-atmosphere-sun-intensity": 15,
         },
       });
+
+      
       // Add Fog
       map.setFog({
         range: [-0.5, 20],
@@ -82,7 +94,6 @@ const GeoMap = () => {
       });
 
       await map.once("idle");
-      const ll = [lng, lat];
     });
 
     // Remove map on unmount
@@ -94,6 +105,7 @@ const GeoMap = () => {
       <div>
         <div className="long_lat_bar">
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom} | {tileInfo}
+          <button onClick={tilesApi.getPngTile(lng, lat, zoom)}> ONCLIC</button>
         </div>
         <div ref={mapContainer} style={{ width: "50%", height: "50vh" }} />
       </div>
