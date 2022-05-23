@@ -25,49 +25,46 @@ const Plane = ({ size, position }) => {
   const mesh = useRef(null);
   const [pixelArray, setPixelArray] = useState([]);
   const [planeSize, setPlaneSize] = useState();
+  const [meshGeometry, setMeshGeometry] = useState({});
 
   const tileToMesh = async () => {
     try {
       const imageData = await getPixels("./test2.pngraw");
 
-     
-
       const planeSize = Math.sqrt(imageData.data.length / 4);
       setPlaneSize(planeSize);
-
-      console.log(Array.from(imageData.data));
       const newPixelArray = Array.from(imageData.data);
 
       setPixelArray(newPixelArray);
 
-      const geometry = new THREE.PlaneBufferGeometry(
-        planeSize,
-        planeSize,
+      const customPlaneGeometry = new THREE.PlaneBufferGeometry(
+        planeSize - 300,
+        planeSize - 300,
         // Number of segments
-        415,
-        415
+        50,
+        50
       );
+      setMeshGeometry(customPlaneGeometry);
 
-      // console.log(pixels.length);
+      const position = customPlaneGeometry.getAttribute("position");
 
-      console.log(imageData.data.length);
-
-      for (let i = 0; i < imageData.data.length; i += 4) {
-        const r = imageData.data[i + 0];
-        const g = imageData.data[i + 1];
-        const b = imageData.data[i + 2];
+      for (let i = 0; i < newPixelArray.length; i += 4) {
+        const r = newPixelArray[i + 0];
+        const g = newPixelArray[i + 1];
+        const b = newPixelArray[i + 2];
         const height = rgbToHeight(r, g, b);
 
-        console.log(geometry.vertices, "Vertices??");
-
-        if (!geometry.attributes.position[i / 4]) {
+        if (!position.array[i / 4]) {
           console.error(`No vertices at index ${i / 4} found.`);
           break;
         }
-        geometry.attributes.position[i / 4].z = height;
+
+        position.array[i / 4] = height; // <------------
+        console.log(height);
+        console.log(position.array, "Vertices??");
       }
 
-      geometry.attributes.position.verticesNeedUpdate = true;
+      position.needsUpdate = true;
     } catch (err) {
       console.error(err);
     }
@@ -84,9 +81,8 @@ const Plane = ({ size, position }) => {
       gl={{ alpha: false, antialias: false }}
       dpr={[1, 1.5]}
     >
-      <mesh ref={mesh} position={position}>
-        <planeBufferGeometry args={[planeSize, planeSize, 256, 256]} />
-        <meshStandardMaterial side={THREE.DoubleSide} />
+      <mesh geometry={meshGeometry} position={position}>
+        <meshStandardMaterial side={THREE.DoubleSide} wireframe={true} />
       </mesh>
       <Light />
       <OrbitControls
