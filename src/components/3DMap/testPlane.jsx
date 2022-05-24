@@ -4,11 +4,6 @@ import * as THREE from "three";
 import { OrbitControls, Sky } from "@react-three/drei";
 import Light from "./Light";
 import { getPixels } from "just-give-me-the-pixels";
-import {ImageLoader} from '@loaders.gl/images';
-import { TerrainLoader } from "@loaders.gl/terrain";
-import { load, registerLoaders } from "@loaders.gl/core";
-
-registerLoaders(ImageLoader);
 
 // From - https://docs.mapbox.com/data/tilesets/guides/access-elevation-data/
 const rgbToHeight = (r, g, b) => {
@@ -29,16 +24,6 @@ const options = {
   },
 };
 
-const getDataTerrain = async () => {
-  try {
-    const dataTerrain = await load("./test10.png", TerrainLoader, options);
-    console.log(dataTerrain);
-    return dataTerrain;
-  } catch (err) {
-    console.error(err);
-  }
-};
-
 const Plane = ({ size, position }) => {
   const mesh = useRef(null);
   const [pixelArray, setPixelArray] = useState([]);
@@ -47,10 +32,8 @@ const Plane = ({ size, position }) => {
   const [heightData, setHeightData] = useState([]);
 
   const tileToMesh = async () => {
-    const terrainObject = getDataTerrain();
-
     try {
-      const imageData = await getPixels("./test.png");
+      const imageData = await getPixels("./test10.png");
       console.log(imageData);
 
       const planeSize = Math.sqrt(imageData.data.length / 4);
@@ -63,13 +46,7 @@ const Plane = ({ size, position }) => {
         256,
         planeSize - 1,
         planeSize - 1
-        // Number of segments
       );
-
-      //customPlaneGeometry.rotation.x = -Math.PI * 0.5;
-      const position = customPlaneGeometry.getAttribute("position");
-
-      //customPlaneGeometry.position.rotateX(Math.PI * 0.5);
 
       let heightData = [];
       for (let i = 0; i < newPixelArray.length; i += 4) {
@@ -78,19 +55,20 @@ const Plane = ({ size, position }) => {
         const b = newPixelArray[i + 2];
         const height = rgbToHeight(r, g, b);
 
-        heightData.push(height / 10);
+        heightData.push(height);
       }
-      console.log(heightData);
-      console.log(customPlaneGeometry.attributes.position);
-
-      const vertices = customPlaneGeometry.attributes.position.array;
+      // used to normalize data between all elevation levels
+      const ratio = Math.max.apply(Math, heightData) / 100;
+      console.log(ratio);
 
       //Put HeightData into mesh
       const arr1 = new Array(customPlaneGeometry.attributes.position.count);
-      console.log(arr1.length);
       const arr = arr1.fill(1);
       arr.forEach((a, index) => {
-        customPlaneGeometry.attributes.position.setZ(index, heightData[index]);
+        customPlaneGeometry.attributes.position.setZ(
+          index,
+          heightData[index] / ratio
+        );
       });
 
       setMeshGeometry(customPlaneGeometry);
@@ -105,11 +83,11 @@ const Plane = ({ size, position }) => {
   }, []);
 
   return (
-    <Canvas>
+    <Canvas camera={{ position: [0, 40, 195] }}>
       <mesh
         geometry={meshGeometry}
-        position={[0, -250, 0]}
-        rotation={[5, 0, 0]}
+        position={[0, -70, 0]}
+        rotation={[4.64, 0, 0]}
       >
         <meshStandardMaterial side={THREE.DoubleSide} wireframe={true} />
       </mesh>
