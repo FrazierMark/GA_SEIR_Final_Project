@@ -15,19 +15,29 @@ const rgbToHeight = (r, g, b) => {
   return -10000 + (r * 256 * 256 + g * 256 + b) * 0.1;
 };
 
-const getHeightData = (allPixels) => {
-  let heightData = [];
-  for (let i = 0; i < allPixels.length; i += 4) {
-    const r = allPixels[i + 0];
-    const g = allPixels[i + 1];
-    const b = allPixels[i + 2];
-    const height = rgbToHeight(r, g, b);
-    heightData.push(height);
-  }
-  return heightData;
+const options = {
+  terrain: {
+    elevationDecoder: {
+      rScaler: 65536 * 0.1,
+      gScaler: 256 * 0.1,
+      bScaler: 0.1,
+      offset: -10000,
+    },
+    meshMaxError: 5.0,
+    bounds: [83, 329.5, 83.125, 329.625], // note: not the real tile bounds
+    tesselator: "martini",
+  },
 };
 
-
+const getDataTerrain = async () => {
+  try {
+    const dataTerrain = await load("./test10.png", TerrainLoader, options);
+    console.log(dataTerrain);
+    return dataTerrain;
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 const Plane = ({ size, position }) => {
   const mesh = useRef(null);
@@ -37,15 +47,11 @@ const Plane = ({ size, position }) => {
   const [heightData, setHeightData] = useState([]);
 
   const tileToMesh = async () => {
-    try {
-      const dataTerrain = await load("./test10.png", TerrainLoader);
-      console.log(dataTerrain);
-    } catch (err) {
-      console.error(err);
-    }
+    const terrainObject = getDataTerrain();
 
     try {
-      const imageData = await getPixels("./test10.png");
+      const imageData = await getPixels("./test.png");
+      console.log(imageData);
 
       const planeSize = Math.sqrt(imageData.data.length / 4);
       setPlaneSize(planeSize);
@@ -53,10 +59,10 @@ const Plane = ({ size, position }) => {
       setPixelArray(newPixelArray);
 
       const customPlaneGeometry = new THREE.PlaneBufferGeometry(
-        60,
-        60,
-        199,
-        199
+        256,
+        256,
+        planeSize - 1,
+        planeSize - 1
         // Number of segments
       );
 
@@ -65,29 +71,30 @@ const Plane = ({ size, position }) => {
 
       //customPlaneGeometry.position.rotateX(Math.PI * 0.5);
 
-      console.log(position.array);
-
       let heightData = [];
       for (let i = 0; i < newPixelArray.length; i += 4) {
         const r = newPixelArray[i + 0];
         const g = newPixelArray[i + 1];
         const b = newPixelArray[i + 2];
         const height = rgbToHeight(r, g, b);
-        heightData.push(Math.round((height / 65535) * 2470));
-      }
 
-      // Put HeightData into mesh
+        heightData.push(height / 10);
+      }
+      console.log(heightData);
+      console.log(customPlaneGeometry.attributes.position);
+
+      const vertices = customPlaneGeometry.attributes.position.array;
+
+      //Put HeightData into mesh
       const arr1 = new Array(customPlaneGeometry.attributes.position.count);
+      console.log(arr1.length);
       const arr = arr1.fill(1);
       arr.forEach((a, index) => {
-        customPlaneGeometry.attributes.position.setZ(
-          index,
-          (heightData[index] / 65) * 10
-        );
+        customPlaneGeometry.attributes.position.setZ(index, heightData[index]);
       });
 
       setMeshGeometry(customPlaneGeometry);
-      position.needsUpdate = true;
+      customPlaneGeometry.attributes.position.needsUpdate = true;
     } catch (err) {
       console.error(err);
     }
@@ -101,7 +108,7 @@ const Plane = ({ size, position }) => {
     <Canvas>
       <mesh
         geometry={meshGeometry}
-        position={[0, -105, 0]}
+        position={[0, -250, 0]}
         rotation={[5, 0, 0]}
       >
         <meshStandardMaterial side={THREE.DoubleSide} wireframe={true} />
