@@ -5,6 +5,7 @@ import Scene from '../3DMap/3DMap'
 import Plane from "../3DMap/testPlane";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import { getPngTile } from "../../utils/tilesApi";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
@@ -26,16 +27,13 @@ const GeoMap = () => {
       pitch: 60,
       bearing: 80,
     });
+
     // Add navigation control (the +/- zoom buttons)
     map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
+    //const someData = getPngTile(lng, lat, zoom);
+    //console.log(someData);
 
-    // map.addControl(new mapboxgl.GeolocateControl({
-    //     positionOptions: {
-    //     enableHighAccuracy: true
-    //     },
-    //     trackUserLocation: true,
-    //     showUserHeading: true
-    // }));
+
 
     // Search option
     map.addControl(
@@ -56,8 +54,6 @@ const GeoMap = () => {
       ];
       setTileInfo(ll);
 
-      // setPxData(px(ll, zoom));
-      // console.log(pxData);
     });
 
     // Only want to work with the map after it has fully loaded
@@ -107,7 +103,7 @@ const GeoMap = () => {
         <div ref={mapContainer} style={{ width: "500px", height: "500px" }} />
       </div>
       {/* <Scene /> */}
-      <Plane lng={lng} lat={lat} zoom={zoom}  />
+      <Plane lng={lng} lat={lat} zoom={zoom} />
     </>
   );
 };
