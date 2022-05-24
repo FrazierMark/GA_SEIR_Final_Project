@@ -4,6 +4,7 @@ import * as THREE from "three";
 import { OrbitControls, Sky } from "@react-three/drei";
 import Light from "./Light";
 import { getPixels } from "just-give-me-the-pixels";
+import { getPngTile } from "../../utils/tilesApi";
 
 // From - https://docs.mapbox.com/data/tilesets/guides/access-elevation-data/
 const rgbToHeight = (r, g, b) => {
@@ -24,7 +25,7 @@ const options = {
   },
 };
 
-const Plane = ({ size, position }) => {
+const Plane = ({ lng, lat, zoom }) => {
   const mesh = useRef(null);
   const [pixelArray, setPixelArray] = useState([]);
   const [planeSize, setPlaneSize] = useState();
@@ -33,7 +34,8 @@ const Plane = ({ size, position }) => {
 
   const tileToMesh = async () => {
     try {
-      const imageData = await getPixels("./test10.png");
+      console.log(getPngTile(lng, lat, zoom));
+      const imageData = await getPixels("./test5.png");
       console.log(imageData);
 
       const planeSize = Math.sqrt(imageData.data.length / 4);

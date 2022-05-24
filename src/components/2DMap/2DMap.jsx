@@ -4,8 +4,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import Scene from '../3DMap/3DMap'
 import Plane from "../3DMap/testPlane";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
-
-import * as tilesApi from "../../utils/tilesApi";
+import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
@@ -38,13 +37,14 @@ const GeoMap = () => {
     //     showUserHeading: true
     // }));
 
-    // // Search option
-    // map.addControl(
-    //   new MapboxGeocoder({
-    //     accessToken: mapboxgl.accessToken,
-    //     mapboxgl: mapboxgl,
-    //   })
-    // );
+    // Search option
+    map.addControl(
+      new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
+        position: "bottom-left",
+      })
+    );
 
     map.on("move", () => {
       setLng(map.getCenter().lng.toFixed(4));
@@ -91,7 +91,6 @@ const GeoMap = () => {
         color: "grey",
         "horizon-blend": 0.1,
       });
-      tilesApi.getPngTile(lng, lat, zoom);
       await map.once("idle");
     });
 
@@ -103,12 +102,12 @@ const GeoMap = () => {
     <>
       <div>
         <div className="long_lat_bar">
-          Longitude: {lng} | Latitude: {lat} | Zoom: {zoom} | {tileInfo}
+          Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
         </div>
         <div ref={mapContainer} style={{ width: "500px", height: "500px" }} />
       </div>
       {/* <Scene /> */}
-      <Plane />
+      <Plane lng={lng} lat={lat} zoom={zoom}  />
     </>
   );
 };
