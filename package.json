@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@loaders.gl/core": "^3.2.3",
+    "@loaders.gl/images": "^3.2.3",
     "@loaders.gl/terrain": "^3.2.3",
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@react-three/drei": "^9.5.0",

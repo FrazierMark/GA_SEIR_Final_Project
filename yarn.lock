@@ -1447,6 +1447,13 @@
     "@probe.gl/log" "^3.5.0"
     "probe.gl" "^3.4.0"
 
+"@loaders.gl/images@^3.2.3":
+  "integrity" "sha512-Y2zBX4WYpN1bGA+jy+Kwn5K9KxbSCFZClz6CFh/mkVsMx1smshmGASEusDlTHTRbNoFmKX622HpeI2lyBL8j9w=="
+  "resolved" "https://registry.npmjs.org/@loaders.gl/images/-/images-3.2.3.tgz"
+  "version" "3.2.3"
+  dependencies:
+    "@loaders.gl/loader-utils" "3.2.3"
+
 "@loaders.gl/loader-utils@3.2.3":
   "integrity" "sha512-TyAHXaXjDZM/5X451MIixOqztEyGCSBJYqNw1ctaVAHruryisJcCscNHipRngbNw/2gVV74ANigv0s44F27WtQ=="
   "resolved" "https://registry.npmjs.org/@loaders.gl/loader-utils/-/loader-utils-3.2.3.tgz"

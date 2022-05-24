@@ -4,8 +4,11 @@ import * as THREE from "three";
 import { OrbitControls, Sky } from "@react-three/drei";
 import Light from "./Light";
 import { getPixels } from "just-give-me-the-pixels";
+import {ImageLoader} from '@loaders.gl/images';
 import { TerrainLoader } from "@loaders.gl/terrain";
 import { load, registerLoaders } from "@loaders.gl/core";
+
+registerLoaders(ImageLoader);
 
 // From - https://docs.mapbox.com/data/tilesets/guides/access-elevation-data/
 const rgbToHeight = (r, g, b) => {
@@ -24,6 +27,8 @@ const getHeightData = (allPixels) => {
   return heightData;
 };
 
+
+
 const Plane = ({ size, position }) => {
   const mesh = useRef(null);
   const [pixelArray, setPixelArray] = useState([]);
@@ -35,7 +40,11 @@ const Plane = ({ size, position }) => {
     try {
       const dataTerrain = await load("./test10.png", TerrainLoader);
       console.log(dataTerrain);
+    } catch (err) {
+      console.error(err);
+    }
 
+    try {
       const imageData = await getPixels("./test10.png");
 
       const planeSize = Math.sqrt(imageData.data.length / 4);
@@ -71,7 +80,10 @@ const Plane = ({ size, position }) => {
       const arr1 = new Array(customPlaneGeometry.attributes.position.count);
       const arr = arr1.fill(1);
       arr.forEach((a, index) => {
-        customPlaneGeometry.attributes.position.setZ(index, heightData[index]);
+        customPlaneGeometry.attributes.position.setZ(
+          index,
+          (heightData[index] / 65) * 10
+        );
       });
 
       setMeshGeometry(customPlaneGeometry);
