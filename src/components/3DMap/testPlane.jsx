@@ -4,24 +4,13 @@ import * as THREE from "three";
 import { OrbitControls, Sky } from "@react-three/drei";
 import Light from "./Light";
 import { getPixels } from "just-give-me-the-pixels";
-
-// const getPixelArray = async (tilePath) => {
-//   try {
-//     const imageData = await getPixels(tilePath);
-
-//     // imageData = {width: 256, height: 256, data: Uint8Array(262144)}
-//     console.log(imageData);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+import { TerrainLoader } from "@loaders.gl/terrain";
+import { load, registerLoaders } from "@loaders.gl/core";
 
 // From - https://docs.mapbox.com/data/tilesets/guides/access-elevation-data/
 const rgbToHeight = (r, g, b) => {
   return -10000 + (r * 256 * 256 + g * 256 + b) * 0.1;
 };
-
-
 
 const getHeightData = (allPixels) => {
   let heightData = [];
@@ -44,24 +33,28 @@ const Plane = ({ size, position }) => {
 
   const tileToMesh = async () => {
     try {
-      const imageData = await getPixels("./test2.pngraw");
+      const dataTerrain = await load("./test10.png", TerrainLoader);
+      console.log(dataTerrain);
+
+      const imageData = await getPixels("./test10.png");
 
       const planeSize = Math.sqrt(imageData.data.length / 4);
       setPlaneSize(planeSize);
       const newPixelArray = Array.from(imageData.data);
-
       setPixelArray(newPixelArray);
 
       const customPlaneGeometry = new THREE.PlaneBufferGeometry(
-        planeSize,
-        planeSize,
+        60,
+        60,
+        199,
+        199
         // Number of segments
-        250,
-        250
       );
+
+      //customPlaneGeometry.rotation.x = -Math.PI * 0.5;
       const position = customPlaneGeometry.getAttribute("position");
-      console.log(position.array);
-      //customPlaneGeometry.rotateX(Math.PI * 0.5);
+
+      //customPlaneGeometry.position.rotateX(Math.PI * 0.5);
 
       console.log(position.array);
 
@@ -71,30 +64,15 @@ const Plane = ({ size, position }) => {
         const g = newPixelArray[i + 1];
         const b = newPixelArray[i + 2];
         const height = rgbToHeight(r, g, b);
-        heightData.push(height);
+        heightData.push(Math.round((height / 65535) * 2470));
       }
-      // console.log(heightData); // heightData good!!
 
-      // GET HEIGHT DATA IN TO POSITION>...
-
-      // let j = 0;
-
-      // for (let i = 2; i < position.array.length; i += 3) {
-      //   position.array[i] = heightData[j] / 10;
-
-      //   j++;
-      // }
-      // Cleaner....
+      // Put HeightData into mesh
       const arr1 = new Array(customPlaneGeometry.attributes.position.count);
       const arr = arr1.fill(1);
       arr.forEach((a, index) => {
-        customPlaneGeometry.attributes.position.setZ(index, (heightData[index] / 30) * -1);
+        customPlaneGeometry.attributes.position.setZ(index, heightData[index]);
       });
-      
-
-      // console.log(height);
-      // console.log(position.array, "Vertices??");
-      console.log(position.array);
 
       setMeshGeometry(customPlaneGeometry);
       position.needsUpdate = true;
@@ -108,22 +86,17 @@ const Plane = ({ size, position }) => {
   }, []);
 
   return (
-    <Canvas
-      shadows
-      camera={{ near: 0.01, far: 390, fov: 45, position: [10, 10, 10] }}
-      gl={{ alpha: false, antialias: false }}
-      dpr={[1, 1.5]}
-    >
-      <mesh geometry={meshGeometry} position={[0, 0, -200]}>
+    <Canvas>
+      <mesh
+        geometry={meshGeometry}
+        position={[0, -105, 0]}
+        rotation={[5, 0, 0]}
+      >
         <meshStandardMaterial side={THREE.DoubleSide} wireframe={true} />
       </mesh>
       <primitive object={new THREE.AxesHelper(10)} />
       <Light />
-      <OrbitControls
-        dampingFactor={0.5}
-        enableDamping="true"
-        target={[0, 0, 0]}
-      />
+      <OrbitControls dampingFactor={0.5} enableDamping="true" />
       <Sky
         azimuth={0.1}
         turbidity={10}

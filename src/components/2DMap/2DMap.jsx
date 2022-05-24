@@ -3,8 +3,7 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Scene from '../3DMap/3DMap'
 import Plane from "../3DMap/testPlane";
-import SphericalMercator from "@mapbox/sphericalmercator";
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
 import * as tilesApi from "../../utils/tilesApi";
 
@@ -12,9 +11,9 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
 const GeoMap = () => {
   const mapContainer = useRef();
-  const [lng, setLng] = useState(-136.49);
-  const [lat, setLat] = useState(60.62);
-  const [zoom, setZoom] = useState(30);
+  const [lng, setLng] = useState(-90.0655);
+  const [lat, setLat] = useState(35.148);
+  const [zoom, setZoom] = useState(15);
   const [tileInfo, setTileInfo] = useState([]);
   const [pxData, setPxData] = useState();
 
@@ -38,13 +37,14 @@ const GeoMap = () => {
     //     trackUserLocation: true,
     //     showUserHeading: true
     // }));
-    // Search option
-    map.addControl(
-      new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl,
-      })
-    );
+
+    // // Search option
+    // map.addControl(
+    //   new MapboxGeocoder({
+    //     accessToken: mapboxgl.accessToken,
+    //     mapboxgl: mapboxgl,
+    //   })
+    // );
 
     map.on("move", () => {
       setLng(map.getCenter().lng.toFixed(4));
@@ -105,7 +105,7 @@ const GeoMap = () => {
         <div className="long_lat_bar">
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom} | {tileInfo}
         </div>
-        <div ref={mapContainer} style={{ width: '500px', height: '500px' }} />
+        <div ref={mapContainer} style={{ width: "500px", height: "500px" }} />
       </div>
       {/* <Scene /> */}
       <Plane />
