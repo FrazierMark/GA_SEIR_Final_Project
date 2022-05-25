@@ -1,0 +1,76 @@
+div.menu_container {
+    display: flex;
+    margin: 10px;
+    flex-wrap: wrap;
+    scroll-behavior: smooth;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  
+    @media only screen and (min-width: 300px) and (max-width: 832px) {
+      display: none;
+      justify-content: space-around;
+    }
+  }
+  
+  a.menu_link {
+    padding: 1rem 1rem;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease-in;
+    scroll-behavior: smooth;
+    font-size: 0.9rem;
+  }
+
+  div.nav {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    scroll-behavior: smooth;
+    z-index: 1;
+    min-height: 60px;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    @media only screen and (min-width: 375px) and (max-width: 832px) {
+      justify-content: space-around;
+    }
+  }
+
+  a {
+    color: black;
+  }
+  a.button {
+    display: inline-block;
+    padding: 0.7em 1em;
+    border: 0.1em solid #ffffff;
+    margin: 0 0.1em 0.1em 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #ffffff;
+    text-align: center;
+    transition: all 0.15s;
+  }
+  
+  a.button:hover {
+    color: #dddddd;
+    border-color: #dddddd;
+  }
+  
+  a.button:active {
+    color: #bbbbbb;
+    border-color: #bbbbbb;
+  }

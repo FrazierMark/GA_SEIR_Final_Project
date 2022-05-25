@@ -9,22 +9,46 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+  animation: fadeInAnimation ease 4s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  scroll-behavior: smooth;
 }
 
 canvas {
-  background: #000000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+  z-index: -1;
+}
+
+.map_container {
+  display: flex;
+}
+
+.mapbox_map {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 500px;
+  height: 500px;
 }
 
 .long_lat_bar {
-    background-color: rgba(35, 55, 75, 0.9);
-    color: #fff;
-    padding: 6px 12px;
-    font-family: monospace;
-    z-index: 1;
-    position: absolute;
-    top: 34em;
-    left: 0;
-    margin: 12px;
-    border-radius: 4px;
+  background-color: rgba(35, 55, 75, 0.9);
+  color: #fff;
+  padding: 6px 12px;
+  font-family: monospace;
+  z-index: 1;
+  position: absolute;
+  top: 34em;
+  left: 0;
+  margin: 12px;
+  border-radius: 4px;
 }
 
+.plane {
+  z-index: -1;
+}

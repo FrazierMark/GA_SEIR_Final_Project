@@ -16,7 +16,7 @@ const Plane = ({ lng, lat, zoom }) => {
   const ref = useRef();
   const [pixelArray, setPixelArray] = useState([]);
   const [planeSize, setPlaneSize] = useState();
-  const [meshGeometry, setMeshGeometry] = useState({});
+  const [meshGeometry, setMeshGeometry] = useState();
   const [heightData, setHeightData] = useState([]);
   const [pngData, setPngData] = useState();
   const [update, setUpdate] = useState([]);
@@ -28,7 +28,7 @@ const Plane = ({ lng, lat, zoom }) => {
     setUpdate(getPngTile(tempLng, tempLat, zoom));
   };
 
-  const tileToMesh = async () => {
+  const createElevationGrid = async () => {
     const newImage = await getPngTile(lng, lat, zoom);
     setPngData(newImage);
 
@@ -72,7 +72,7 @@ const Plane = ({ lng, lat, zoom }) => {
   };
 
   useEffect(() => {
-    tileToMesh();
+    createElevationGrid();
     // rerenders on change....
   }, [update]);
 
@@ -106,6 +106,6 @@ const Plane = ({ lng, lat, zoom }) => {
       </Canvas>
     </>
   );
-};;;;
+};
 
 export default Plane;

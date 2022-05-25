@@ -4,6 +4,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import Plane from "../3DMap/testPlane";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import Navbar from "../Navbar/Navbar";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
@@ -12,7 +13,6 @@ const GeoMap = () => {
   const [lng, setLng] = useState(-90.00129);
   const [lat, setLat] = useState(35.1797);
   const [zoom, setZoom] = useState(13);
-  const [tileInfo, setTileInfo] = useState([]);
 
   useEffect(() => {
     // Creates 2D map
@@ -84,14 +84,16 @@ const GeoMap = () => {
 
   return (
     <>
-      <div>
-        <div className="long_lat_bar">
-          Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+      <Navbar />
+      <div className="map_container">
+        <div className="mapbox_map" ref={mapContainer}>
+          <div className="long_lat_bar">
+            Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+          </div>
+          <div />
         </div>
-        <div ref={mapContainer} style={{ width: "500px", height: "500px" }} />
       </div>
-      {/* <Scene /> */}
-      <Plane lng={lng} lat={lat} zoom={zoom} />
+      <Plane className="plane" lng={lng} lat={lat} zoom={zoom} />
     </>
   );
 };
