@@ -11,19 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.geocoder {
-  position: absolute;
-z-index: 20;
-right: 10%;
-top: 14%;
-text-decoration: none;
-list-style-type: none;
-  }
-  .mapboxgl-ctrl-geocoder {
-  min-width: 100%;
-  }
-  #map {
-  margin-top: 175px;
-  padding: 50px;
-  }

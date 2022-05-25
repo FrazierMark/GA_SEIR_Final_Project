@@ -85,13 +85,11 @@ const GeoMap = () => {
   return (
     <>
       <Navbar />
-      <div className="map_container">
-        <div className="mapbox_map" ref={mapContainer}>
-          <div className="long_lat_bar">
-            Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-          </div>
-          <div />
+      <div className="mapbox_map" ref={mapContainer}>
+        <div className="long_lat_bar">
+          Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
         </div>
+        <div />
       </div>
       <Plane className="plane" lng={lng} lat={lat} zoom={zoom} />
     </>

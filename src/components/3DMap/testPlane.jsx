@@ -78,11 +78,11 @@ const Plane = ({ lng, lat, zoom }) => {
 
   return (
     <>
-      <button onClick={handleClick}>Generate New 3D Terrrain</button>
-      <Canvas camera={{ position: [0, 40, 195] }}>
+      <button className="generate_button" onClick={handleClick}>Generate New 3D Terrrain</button>
+      <Canvas className="canvas" camera={{ position: [0, 230, 295] }}>
         <mesh
           geometry={meshGeometry}
-          position={[0, -70, 0]}
+          position={[60, -70, 0]}
           rotation={[4.64, 0, 0]}
         >
           <waveShaderMaterial
@@ -101,7 +101,7 @@ const Plane = ({ lng, lat, zoom }) => {
           turbidity={10}
           rayleigh={0.5}
           inclination={0.6}
-          distance={500}
+          distance={1000}
         />
       </Canvas>
     </>
