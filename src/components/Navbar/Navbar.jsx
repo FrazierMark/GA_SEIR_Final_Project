@@ -1,33 +1,36 @@
 import React from "react";
 import { SvgRocket } from "../Logo/Logo";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-function Navbar() {
+function Navbar({ user, handleLogout }) {
   return (
     <div className="nav">
-      <SvgRocket />
+      <Link to="/">
+        <img
+          className="nav__logo"
+          src="https://i.imgur.com/ic7njgq.png"
+          alt="landscape terrain logo"
+        />
+      </Link>
 
-      <div className="menu_container">
-        <a className="menu_link" href="#about">
-          About
-        </a>
-        <a className="menu_link" href="#skills">
-          Skills & Tools
-        </a>
-        <a className="menu_link" href="#portfolio">
-          Portfolio
-        </a>
-        <a className="menu_link" href="#contact">
-          Contact
-        </a>
-        <a
-          href="/resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="button"
-        >
-          Sign Out
-        </a>
+      <div className="nav__nav">
+        <Link to={!user && "/login"}>
+          <div onClick={handleLogout} className="nav__option">
+            <span className="nav__optionLineOne">
+              {!user ? "Guest" : user.email}
+            </span>
+            <span className="nav__optionLineTwo">
+              {user ? "Sign Out" : "Sign In"}
+            </span>
+          </div>
+        </Link>
+
+        <Link to="/signup">
+          <div className="nav__option">
+            <span className="nav__optionLineOne"> or Sign Up</span>
+          </div>
+        </Link>
       </div>
     </div>
   );

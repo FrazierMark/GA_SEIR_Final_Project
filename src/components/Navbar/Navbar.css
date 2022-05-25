@@ -1,52 +1,45 @@
-div.menu_container {
-    display: flex;
-    margin: 10px;
-    flex-wrap: wrap;
-    scroll-behavior: smooth;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  
-    @media only screen and (min-width: 300px) and (max-width: 832px) {
-      display: none;
-      justify-content: space-around;
-    }
-  }
-  
-  a.menu_link {
-    padding: 1rem 1rem;
-    color: black;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    transition: all 0.3s ease-in;
-    scroll-behavior: smooth;
-    font-size: 0.9rem;
-  }
+.nav {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #131921;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-  div.nav {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    scroll-behavior: smooth;
-    z-index: 1;
-    min-height: 60px;
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10px;
-    margin-bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    @media only screen and (min-width: 375px) and (max-width: 832px) {
-      justify-content: space-around;
-    }
-  }
+.nav__logo {
+  width: 100px;
+  object-fit: contain;
+  margin: 0 20px;
+  margin-top: 18px;
+}
+
+.nav__optionLineOne {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.nav__optionLineTwo {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+
+.nav__nav {
+  display: flex;
+  justify-content: space-evenly
+}
+
+.nav__option {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+}
+
+
 
   a {
     color: black;

@@ -5,6 +5,7 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import GeoMap from "../../components/2DMap/2DMap";
+import Locations from "../Locations/Locations";
 
 function App() {
   const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object
@@ -24,6 +25,11 @@ function App() {
     return (
       <Routes>
         <Route path="/" element={<GeoMap />} />
+
+        <Route
+          path="/locations"
+          element={<Locations user={user} handleLogout={handleLogout} />}
+        />
         <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
@@ -37,20 +43,18 @@ function App() {
   }
 
   return (
-    // <Routes>
-    //   <Route
-    //     path="/login"
-    //     element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-    //   />
-    //   <Route
-    //     path="/signup"
-    //     element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-    //   />
-    //   <Route path="/*" element={<Navigate to="/" />} />
-    // </Routes>
-    <>
-      <GeoMap />
-    </>
+    <Routes>
+      <Route path="/" element={<GeoMap />} />
+      <Route
+        path="/login"
+        element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+      />
+      <Route
+        path="/signup"
+        element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+      />
+      <Route path="/*" element={<Navigate to="/" />} />
+    </Routes>
   );
 }
 
