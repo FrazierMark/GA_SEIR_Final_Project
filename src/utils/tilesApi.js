@@ -33,14 +33,6 @@ export const getPngTile = async (longitude, latitude, zoom) => {
 
 
 
-    // return fetch(`https://api.mapbox.com/v4/mapbox.terrain-rgb/15/8186/12962.png?access_token=pk.eyJ1IjoiZnJhemllcm1hcmsiLCJhIjoiY2wzOTBhZzJiMDFwejNqbzJyMGs0YmZ5NCJ9.2VB9C63HoxzjCpCmbhga9A`)
-    //     .then(function (response) {
-    //         return response.body
-    //     })
-
-
-
-
     // return axios.get(`https://api.mapbox.com/v4/mapbox.terrain-rgb/${zoom}/${apiRequestData[0]}/${apiRequestData[1]}.png?access_token=${accessToken}`, {
     //   responseType: 'arraybuffer'
     // })

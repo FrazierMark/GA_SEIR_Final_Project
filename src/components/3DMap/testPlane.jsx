@@ -6,6 +6,7 @@ import Light from "./Light";
 import { getPixels } from "just-give-me-the-pixels";
 import { getPngTile } from "../../utils/tilesApi";
 import axios from "axios";
+import Wave from "./WaveShaderMaterial";
 
 // From - https://docs.mapbox.com/data/tilesets/guides/access-elevation-data/
 const rgbToHeight = (r, g, b) => {
@@ -27,7 +28,7 @@ function lat2tile(lat, zoom) {
 }
 
 const Plane = ({ lng, lat, zoom }) => {
-  const mesh = useRef(null);
+  const ref = useRef(null);
   const [pixelArray, setPixelArray] = useState([]);
   const [planeSize, setPlaneSize] = useState();
   const [meshGeometry, setMeshGeometry] = useState({});
@@ -35,12 +36,8 @@ const Plane = ({ lng, lat, zoom }) => {
   const [pngData, setPngData] = useState([]);
 
   const tileToMesh = async () => {
-    //   // console.log(getPngTile(lng, lat, zoom));
-    // console.log(pngData);
-    // const newImage = getPngTile(lng, lat, zoom);
-
     const newImage = await getPngTile(lng, lat, zoom);
-    setPngData(newImage)
+    setPngData(newImage);
 
     const imageData = await getPixels(newImage);
     // console.log(imageData);
@@ -48,13 +45,6 @@ const Plane = ({ lng, lat, zoom }) => {
     setPlaneSize(planeSize);
     const pixelArray = Array.from(imageData.data);
     setPixelArray(pixelArray);
-
-    const customPlaneGeometry = new THREE.PlaneBufferGeometry(
-      256,
-      256,
-      planeSize - 1,
-      planeSize - 1
-    );
 
     let heightData = [];
     for (let i = 0; i < pixelArray.length; i += 4) {
@@ -68,6 +58,13 @@ const Plane = ({ lng, lat, zoom }) => {
     // used to normalize data between all elevation levels
     const ratio = Math.max.apply(Math, heightData) / 100;
 
+    const customPlaneGeometry = new THREE.PlaneBufferGeometry(
+      256,
+      256,
+      planeSize - 1,
+      planeSize - 1
+    );
+
     //Put HeightData into mesh
     const arr1 = new Array(customPlaneGeometry.attributes.position.count);
     const arr = arr1.fill(1);
@@ -79,7 +76,7 @@ const Plane = ({ lng, lat, zoom }) => {
     });
 
     setMeshGeometry(customPlaneGeometry);
-    customPlaneGeometry.attributes.position.needsUpdate = true;
+    //customPlaneGeometry.attributes.position.needsUpdate = true;
   };
 
   useEffect(() => {
@@ -96,7 +93,13 @@ const Plane = ({ lng, lat, zoom }) => {
           position={[0, -70, 0]}
           rotation={[4.64, 0, 0]}
         >
-          <meshStandardMaterial side={THREE.DoubleSide} wireframe={true} />
+          <waveShaderMaterial
+            uColor={"hotpink"}
+            ref={ref}
+            side={THREE.DoubleSide}
+            wireframe={true}
+            // uTexture={"sometexure to get to work"}
+          />
         </mesh>
         <primitive object={new THREE.AxesHelper(10)} />
         {/* <Light /> */}

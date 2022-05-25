@@ -1,11 +1,9 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import Scene from '../3DMap/3DMap'
 import Plane from "../3DMap/testPlane";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
-import { getPngTile } from "../../utils/tilesApi";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
@@ -15,7 +13,6 @@ const GeoMap = () => {
   const [lat, setLat] = useState(35.148);
   const [zoom, setZoom] = useState(15);
   const [tileInfo, setTileInfo] = useState([]);
-  const [pxData, setPxData] = useState();
 
   useEffect(() => {
     // Creates 2D map
@@ -30,11 +27,7 @@ const GeoMap = () => {
 
     // Add navigation control (the +/- zoom buttons)
     map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
-    //const someData = getPngTile(lng, lat, zoom);
-    //console.log(someData);
-
-
-
+    
     // Search option
     map.addControl(
       new MapboxGeocoder({
