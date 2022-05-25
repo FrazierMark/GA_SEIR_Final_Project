@@ -24,7 +24,10 @@ function App() {
   if (user) {
     return (
       <Routes>
-        <Route path="/" element={<GeoMap user={user} />} />
+        <Route
+          path="/"
+          element={<GeoMap user={user} handleLogout={handleLogout} />}
+        />
 
         <Route
           path="/locations"

@@ -8,7 +8,7 @@ import Navbar from "../Navbar/Navbar";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
-const GeoMap = ({user}) => {
+const GeoMap = ({ user, handleLogout }) => {
   const mapContainer = useRef();
   const [lng, setLng] = useState(-90.00129);
   const [lat, setLat] = useState(35.1797);
@@ -84,7 +84,7 @@ const GeoMap = ({user}) => {
 
   return (
     <>
-      <Navbar user={user} />
+      <Navbar user={user} handleLogout={handleLogout} />
       <div className="mapbox_map" ref={mapContainer}>
         <div className="long_lat_bar">
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
