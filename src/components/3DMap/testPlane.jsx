@@ -19,8 +19,14 @@ const Plane = ({ lng, lat, zoom }) => {
   const [meshGeometry, setMeshGeometry] = useState({});
   const [heightData, setHeightData] = useState([]);
   const [pngData, setPngData] = useState();
+  const [update, setUpdate] = useState([]);
 
-  // const handleClick = () => {};
+  const handleClick = () => {
+    console.log("Update Geometry!");
+    const tempLng = Number(lng);
+    const tempLat = Number(lat);
+    setUpdate(getPngTile(tempLng, tempLat, zoom));
+  };
 
   const tileToMesh = async () => {
     const newImage = await getPngTile(lng, lat, zoom);
@@ -41,7 +47,7 @@ const Plane = ({ lng, lat, zoom }) => {
       heightData.push(height);
     }
     // used to normalize data between all elevation levels
-    const ratio = Math.max.apply(Math, heightData) / 100;
+    const ratio = Math.max.apply(Math, heightData) / 80;
     console.log(ratio);
 
     const customPlaneGeometry = new THREE.PlaneBufferGeometry(
@@ -68,11 +74,11 @@ const Plane = ({ lng, lat, zoom }) => {
   useEffect(() => {
     tileToMesh();
     // rerenders on change....
-  }, []);
+  }, [update]);
 
   return (
     <>
-      <button>Generate New 3D Terrrain</button>
+      <button onClick={handleClick}>Generate New 3D Terrrain</button>
       <Canvas camera={{ position: [0, 40, 195] }}>
         <mesh
           geometry={meshGeometry}

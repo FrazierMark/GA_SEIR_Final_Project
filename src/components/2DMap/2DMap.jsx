@@ -9,9 +9,9 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
 const GeoMap = () => {
   const mapContainer = useRef();
-  const [lng, setLng] = useState(-106.34);
-  const [lat, setLat] = useState(38.704);
-  const [zoom, setZoom] = useState(10);
+  const [lng, setLng] = useState(-90.00129);
+  const [lat, setLat] = useState(35.1797);
+  const [zoom, setZoom] = useState(13);
   const [tileInfo, setTileInfo] = useState([]);
 
   useEffect(() => {
@@ -20,14 +20,14 @@ const GeoMap = () => {
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/satellite-streets-v11",
       center: [lng, lat],
-      zoom: 12,
-      pitch: 60,
-      bearing: 80,
+      zoom: 13,
+      pitch: 0,
+      tileSize: 256,
     });
 
     // Add navigation control (the +/- zoom buttons)
     map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
-    
+
     // Search option
     map.addControl(
       new MapboxGeocoder({
@@ -38,30 +38,25 @@ const GeoMap = () => {
     );
 
     map.on("move", () => {
-      setLng(map.getCenter().lng.toFixed(4));
-      setLat(map.getCenter().lat.toFixed(4));
-      setZoom(map.getZoom().toFixed(2));
-      const ll = [
-        map.getCenter().lng.toFixed(2),
-        map.getCenter().lat.toFixed(2),
-      ];
-      setTileInfo(ll);
-
+      setLng(map.getCenter().lng.toFixed(5));
+      setLat(map.getCenter().lat.toFixed(5));
+      setZoom(Math.floor(map.getZoom()));
+      //setZoom(map.getZoom().toFixed(3))
     });
 
     // Only want to work with the map after it has fully loaded
     map.on("load", async () => {
       // Add mapbox terrain dem source for 3d terrain rendering
-      map.addSource("mapbox-dem", {
-        type: "raster-dem",
-        url: "mapbox://mapbox.terrain-rgb",
-        tileSize: 512,
-        maxZoom: 16,
-      });
-      map.setTerrain({
-        source: "mapbox-dem",
-        exaggeration: 1.5,
-      });
+      // map.addSource("mapbox-dem", {
+      //   type: "raster-dem",
+      //   url: "mapbox://mapbox.terrain-rgb",
+      //   tileSize: 256,
+      //   maxZoom: 16,
+      // });
+      // map.setTerrain({
+      //   source: "mapbox-dem",
+      //   exaggeration: 1.5,
+      // });
 
       // Add sky layer
       map.addLayer({
