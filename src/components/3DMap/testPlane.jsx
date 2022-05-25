@@ -5,42 +5,28 @@ import { OrbitControls, Sky } from "@react-three/drei";
 import Light from "./Light";
 import { getPixels } from "just-give-me-the-pixels";
 import { getPngTile } from "../../utils/tilesApi";
-import axios from "axios";
 import Wave from "./WaveShaderMaterial";
 
 // From - https://docs.mapbox.com/data/tilesets/guides/access-elevation-data/
 const rgbToHeight = (r, g, b) => {
   return -10000 + (r * 256 * 256 + g * 256 + b) * 0.1;
 };
-function lon2tile(lon, zoom) {
-  return Math.floor(((lon + 180) / 360) * Math.pow(2, zoom));
-}
-function lat2tile(lat, zoom) {
-  return Math.floor(
-    ((1 -
-      Math.log(
-        Math.tan((lat * Math.PI) / 180) + 1 / Math.cos((lat * Math.PI) / 180)
-      ) /
-        Math.PI) /
-      2) *
-      Math.pow(2, zoom)
-  );
-}
 
 const Plane = ({ lng, lat, zoom }) => {
-  const ref = useRef(null);
+  const ref = useRef();
   const [pixelArray, setPixelArray] = useState([]);
   const [planeSize, setPlaneSize] = useState();
   const [meshGeometry, setMeshGeometry] = useState({});
   const [heightData, setHeightData] = useState([]);
-  const [pngData, setPngData] = useState([]);
+  const [pngData, setPngData] = useState();
+
+  // const handleClick = () => {};
 
   const tileToMesh = async () => {
     const newImage = await getPngTile(lng, lat, zoom);
     setPngData(newImage);
 
     const imageData = await getPixels(newImage);
-    // console.log(imageData);
     const planeSize = Math.sqrt(imageData.data.length / 4);
     setPlaneSize(planeSize);
     const pixelArray = Array.from(imageData.data);
@@ -52,11 +38,11 @@ const Plane = ({ lng, lat, zoom }) => {
       const g = pixelArray[i + 1];
       const b = pixelArray[i + 2];
       const height = rgbToHeight(r, g, b);
-
       heightData.push(height);
     }
     // used to normalize data between all elevation levels
     const ratio = Math.max.apply(Math, heightData) / 100;
+    console.log(ratio);
 
     const customPlaneGeometry = new THREE.PlaneBufferGeometry(
       256,
@@ -114,6 +100,6 @@ const Plane = ({ lng, lat, zoom }) => {
       </Canvas>
     </>
   );
-};;;;;;;
+};;;;
 
 export default Plane;

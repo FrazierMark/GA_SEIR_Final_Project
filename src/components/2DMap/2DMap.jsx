@@ -9,9 +9,9 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
 const GeoMap = () => {
   const mapContainer = useRef();
-  const [lng, setLng] = useState(-90.0655);
-  const [lat, setLat] = useState(35.148);
-  const [zoom, setZoom] = useState(15);
+  const [lng, setLng] = useState(-106.34);
+  const [lat, setLat] = useState(38.704);
+  const [zoom, setZoom] = useState(10);
   const [tileInfo, setTileInfo] = useState([]);
 
   useEffect(() => {
