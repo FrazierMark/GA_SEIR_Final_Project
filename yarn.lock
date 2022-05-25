@@ -1645,10 +1645,10 @@
   "resolved" "https://registry.npmjs.org/@react-spring/types/-/types-9.4.5.tgz"
   "version" "9.4.5"
 
-"@react-three/drei@^9.5.0":
-  "integrity" "sha512-fcKBG1J1AGE5F6S/z/GDzskkfCj3dSSScw6RP0jefOAK7qSPwgD7rtW7H0puwuJoZ7JI3glGysGKGAR52bCejQ=="
-  "resolved" "https://registry.npmjs.org/@react-three/drei/-/drei-9.11.2.tgz"
-  "version" "9.11.2"
+"@react-three/drei@^9.11.3":
+  "integrity" "sha512-4qMtbWr9+LexJBVA/mS2DmtquDLUle+Vrt5jCmulz1tsW8eYpQN8dvukZQiJ5nVQPCx3yf8icybtwY7GnxNitg=="
+  "resolved" "https://registry.npmjs.org/@react-three/drei/-/drei-9.11.3.tgz"
+  "version" "9.11.3"
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@react-spring/three" "^9.3.1"
