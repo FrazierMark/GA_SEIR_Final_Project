@@ -26,6 +26,16 @@ function Navbar({ user, handleLogout }) {
           </div>
         </Link>
 
+        {!user ? (
+          ""
+        ) : (
+          <Link to="/locations">
+            <div className="nav__option">
+              <span className="nav__optionLineOne"> My Locations</span>
+            </div>
+          </Link>
+        )}
+
         <Link to="/signup">
           <div className="nav__option">
             <span className="nav__optionLineOne"> or Sign Up</span>
