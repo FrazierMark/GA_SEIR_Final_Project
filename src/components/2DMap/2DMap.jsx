@@ -38,7 +38,6 @@ const GeoMap = ({ user, handleLogout }) => {
       const data = await locationAPI.create(location); // our server is going to return
       // the created post, that will be inside of data, which is the response from
       // the server, we then want to set it in state
-      console.log(data);
       navigate("/locations");
     } catch (err) {
       console.log(err);

@@ -2,8 +2,7 @@ import tokenService from "./tokenService";
 
 const BASE_URL = "/api/users/";
 
-// NOTE THIS IS configured to send of a multi/part form request
-// aka photo
+
 function signup(user) {
   return (
     fetch(BASE_URL + "signup", {
@@ -18,10 +17,7 @@ function signup(user) {
       // Parameter destructuring!
       .then(({ token }) => tokenService.setToken(token))
   );
-  // Setting our token in localStorage in our browser
-  // then we'll be able to use with every request!
-  // The above could have been written as
-  //.then((token) => token.token);
+//Set Token in local storage
 }
 
 
