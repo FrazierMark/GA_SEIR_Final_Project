@@ -41,11 +41,25 @@ async function deleteLocation(req, res) {
     }
 }
 
+const addNote = async (req, res) => {
+    console.log(req.body, 'createNote?', req.user)
+    try {
+        const location = await Location.findById(req.params.id);
+        console.log(location)
+        location.notes.push({ content: req.body.note, username: req.user.username, userId: req.user._id });
+        await location.save()
+        res.status(201).json({ data: 'note added' })
+    } catch (err) {
+        console.log(err)
+        res.json({ data: err })
+    }
+}
 
 
 
 module.exports = {
     create,
     index,
-    deleteLocation
+    deleteLocation,
+    addNote
 }

@@ -29,6 +29,17 @@ export const getAll = async () => {
     }
 }
 
+export function deleteLocation(locationId) {
+    console.log(locationId)
+    return axios.delete(`${BASE_URL}/${locationId}`, locationId, options)
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => {
+            console.log("ERROR: === ", err)
+        })
+}
+
 // export function getAll() {
 //     return fetch(BASE_URL, {
 //       headers: {
@@ -53,13 +64,3 @@ export const getAll = async () => {
 // 	})
 // }
 
-export function deleteLocation(locationId) {
-    console.log(locationId)
-    return axios.delete(`${BASE_URL}/${locationId}`, locationId, options)
-        .then((res) => {
-            console.log(res.data);
-        })
-        .catch((err) => {
-            console.log("ERROR: === ", err)
-        })
-}

@@ -13,7 +13,6 @@ const rgbToHeight = (r, g, b) => {
 };
 
 const Plane = ({ lng, lat, zoom, favLocations }) => {
-  console.log(favLocations);
   const ref = useRef();
   const [pixelArray, setPixelArray] = useState([]);
   const [planeSize, setPlaneSize] = useState();
@@ -49,7 +48,6 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
     }
     // used to normalize data between all elevation levels
     const ratio = Math.max.apply(Math, heightData) / 80;
-    console.log(ratio);
 
     const customPlaneGeometry = new THREE.PlaneBufferGeometry(
       256,

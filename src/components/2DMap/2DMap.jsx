@@ -41,7 +41,6 @@ const GeoMap = ({ user, handleLogout }) => {
       navigate("/locations");
     } catch (err) {
       console.log(err);
-      setError(err.message);
     }
   }
 

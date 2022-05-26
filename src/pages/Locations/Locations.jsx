@@ -10,7 +10,6 @@ const Locations = () => {
   const getLocations = async () => {
     try {
       const data = await locationsAPI.getAll();
-      console.log(data.data.locations);
       setLocations([...data.data.locations]);
     } catch (err) {
       console.log(err.message, " this is the error");
