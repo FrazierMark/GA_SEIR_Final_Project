@@ -11,6 +11,12 @@ const noteSchema = new mongoose.Schema({
 
 
 const locationSchema = new mongoose.Schema({
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    location_description: {
+        type: String,
+        required: true,
+        unique: true
+    },
     longitude: {
         type: Number,
         required: true,

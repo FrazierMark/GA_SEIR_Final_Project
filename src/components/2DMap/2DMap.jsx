@@ -5,6 +5,10 @@ import Plane from "../3DMap/testPlane";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import Navbar from "../Navbar/Navbar";
+import { Button, Form } from "semantic-ui-react";
+import { useNavigate, Link } from "react-router-dom";
+import * as locationAPI from "../../utils/locationApi";
+import "./map.css";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
@@ -13,6 +17,34 @@ const GeoMap = ({ user, handleLogout }) => {
   const [lng, setLng] = useState(-90.00129);
   const [lat, setLat] = useState(35.1797);
   const [zoom, setZoom] = useState(13);
+  const [description, setDescription] = useState('');
+  const [error, setError] = useState("");
+
+  function handleChange(e) {
+    setDescription(e.target.value);
+  }
+
+  const navigate = useNavigate();
+
+  async function addLocation(e) {
+    e.preventDefault();
+    try {
+      const location = {
+        description: description,
+        longitude: lng,
+        latitude: lat,
+        zoom: zoom,
+      };
+      const data = await locationAPI.create(location); // our server is going to return
+      // the created post, that will be inside of data, which is the response from
+      // the server, we then want to set it in state
+      console.log(data);
+      navigate("/locations");
+    } catch (err) {
+      console.log(err);
+      setError(err.message);
+    }
+  }
 
   useEffect(() => {
     // Creates 2D map
@@ -85,6 +117,19 @@ const GeoMap = ({ user, handleLogout }) => {
   return (
     <>
       <Navbar user={user} handleLogout={handleLogout} />
+      <Form className="form_field" autoComplete="off" onSubmit={addLocation}>
+        <Form.Input
+          name="description"
+          type="string"
+          placeholder="Description"
+          value={description}
+          onChange={handleChange}
+          required
+        />
+        <Button color="teal" fluid size="large" type="submit" className="btn">
+          Add Location
+        </Button>
+      </Form>
       <div className="mapbox_map" ref={mapContainer}>
         <div className="long_lat_bar">
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
