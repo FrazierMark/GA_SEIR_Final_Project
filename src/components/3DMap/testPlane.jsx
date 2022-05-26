@@ -12,7 +12,8 @@ const rgbToHeight = (r, g, b) => {
   return -10000 + (r * 256 * 256 + g * 256 + b) * 0.1;
 };
 
-const Plane = ({ lng, lat, zoom }) => {
+const Plane = ({ lng, lat, zoom, favLocations }) => {
+  console.log(favLocations);
   const ref = useRef();
   const [pixelArray, setPixelArray] = useState([]);
   const [planeSize, setPlaneSize] = useState();
@@ -78,15 +79,17 @@ const Plane = ({ lng, lat, zoom }) => {
 
   return (
     <>
-      <button className="generate_button" onClick={handleClick}>Generate New 3D Terrrain</button>
+      <button className="generate_button" onClick={handleClick}>
+        Generate New 3D Terrrain
+      </button>
       <Canvas className="canvas" camera={{ position: [0, 230, 295] }}>
         <mesh
           geometry={meshGeometry}
           position={[60, -70, 0]}
           rotation={[4.64, 0, 0]}
         >
-          <waveShaderMaterial
-            uColor={"hotpink"}
+          <meshStandardMaterial
+            color={"hotpink"}
             ref={ref}
             side={THREE.DoubleSide}
             wireframe={true}
@@ -94,7 +97,7 @@ const Plane = ({ lng, lat, zoom }) => {
           />
         </mesh>
         <primitive object={new THREE.AxesHelper(10)} />
-        {/* <Light /> */}
+        <Light />
         <OrbitControls dampingFactor={0.5} enableDamping="true" />
         <Sky
           azimuth={0.1}

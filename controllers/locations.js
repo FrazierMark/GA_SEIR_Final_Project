@@ -31,6 +31,17 @@ async function index(req, res) {
     }
 }
 
+// async function deleteLocation(req, res) {
+//     try {
+//         // this populates the user when you find the posts
+//         const locations = await Location.findOne({'location._id' : req.params.id}).populate('user').exec()
+//         res.status(200).json({ locations })
+//     } catch (err) {
+
+//     }
+// }
+
+
 module.exports = {
     create,
     index
