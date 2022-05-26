@@ -14,10 +14,10 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
 const GeoMap = ({ user, handleLogout }) => {
   const mapContainer = useRef();
-  const [lng, setLng] = useState(-90.00129);
-  const [lat, setLat] = useState(35.1797);
-  const [zoom, setZoom] = useState(13);
-  const [description, setDescription] = useState('');
+  const [lng, setLng] = useState(-90.05622);
+  const [lat, setLat] = useState(35.18088);
+  const [zoom, setZoom] = useState(12);
+  const [description, setDescription] = useState("");
   const [error, setError] = useState("");
 
   function handleChange(e) {
@@ -51,7 +51,7 @@ const GeoMap = ({ user, handleLogout }) => {
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/satellite-streets-v11",
       center: [lng, lat],
-      zoom: 13,
+      zoom: 12,
       pitch: 0,
       tileSize: 256,
     });

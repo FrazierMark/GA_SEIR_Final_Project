@@ -41,14 +41,25 @@ export const getAll = async () => {
 //     })
 //   }
 
-export function deleteLocation(locationId){
-	return fetch(`${BASE_URL}/locations/${locationId}`, {
-		method: 'DELETE',
-		headers: {
-			'Authorization': 'Bearer ' + tokenService.getToken()
-		  }
-	}).then(res => {
-		if(res.ok) return res.json()
-		throw new Error('Not logged In! Check Express terminal')
-	})
+// export function deleteLocation(locationId){
+// 	return fetch(`${BASE_URL}/locations/${locationId}`, {
+// 		method: 'DELETE',
+// 		headers: {
+// 			'Authorization': 'Bearer ' + tokenService.getToken()
+// 		  }
+// 	}).then(res => {
+// 		if(res.ok) return res.json()
+// 		throw new Error('Not logged In! Check Express terminal')
+// 	})
+// }
+
+export function deleteLocation(locationId) {
+    console.log(locationId)
+    return axios.delete(`${BASE_URL}/${locationId}`, locationId, options)
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => {
+            console.log("ERROR: === ", err)
+        })
 }

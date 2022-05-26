@@ -17,10 +17,19 @@ const Locations = () => {
     }
   };
 
-  const handleDelete = () => {};
-
-  //const lng = favLocations[0].longitude;
-  console.log(favLocations[0]);
+  const handleDelete = async (locationId) => {
+    try {
+      console.log(locationId);
+      const data = await locationsAPI.deleteLocation(locationId);
+      console.log(
+        data,
+        "<-  this is the response from the server when we remove a like"
+      );
+      getLocations();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     getLocations();
@@ -32,13 +41,14 @@ const Locations = () => {
       {favLocations.map((location) => {
         return (
           <LocationsCard
-            description={location.location_description}
             key={location._id}
+            description={location.location_description}
+            id={location._id}
             // isProfile={isProfile}
             longitude={location.longitude}
             latitude={location.latitude}
             zoom={location.zoom}
-            delete={handleDelete}
+            handleDelete={handleDelete}
           />
         );
       })}

@@ -27,22 +27,25 @@ async function index(req, res) {
         const locations = await Location.find({}).populate('user').exec()
         res.status(200).json({ locations })
     } catch (err) {
-
+        console.log(err)
     }
 }
 
-// async function deleteLocation(req, res) {
-//     try {
-//         // this populates the user when you find the posts
-//         const locations = await Location.findOne({'location._id' : req.params.id}).populate('user').exec()
-//         res.status(200).json({ locations })
-//     } catch (err) {
+async function deleteLocation(req, res) {
+    try {
+        // this populates the user when you find the posts
+        const locations = await Location.deleteOne({ 'location._id': req.params.id })
+        res.status(200).json({ locations })
+    } catch (err) {
+        console.log(err)
+    }
+}
 
-//     }
-// }
+
 
 
 module.exports = {
     create,
-    index
+    index,
+    deleteLocation
 }
