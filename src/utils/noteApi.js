@@ -1,7 +1,7 @@
 import axios from "axios";
 import tokenService from "./tokenService";
 
-const BASE_URL = "/api/locations";
+const BASE_URL = "/api/notes";
 
 const options = {
     headers: {
@@ -12,7 +12,18 @@ const options = {
 
 export function createNote(locationId, note) {
     console.log(note)
-    return axios.post(`${BASE_URL}/${locationId}/notes`, note, options)
+    return axios.post(`${BASE_URL}/${locationId}`, note, options)
+        .then((res) => {
+            console.log("RESPONSE ==== : ", res.data);
+        })
+        .catch((err) => {
+            console.log("ERROR: === ", err)
+        })
+}
+
+export function deleteNote(noteId) {
+    console.log(noteId)
+    return axios.delete(`${BASE_URL}/${noteId}`, options)
         .then((res) => {
             console.log("RESPONSE ==== : ", res.data);
         })

@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import { Card, Icon, Image, Form, Button } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import * as noteAPI from "../../utils/noteApi";
+import NoteCard from "../NoteCard/NoteCard";
 
 function LocationsCard({
+  location,
   description,
   id,
   longitude,
   latitude,
   zoom,
-  note,
+  notes,
   handleDelete,
+  getLocations,
 }) {
-  const [locationNote, setLocationNote] = useState('');
+  const [locationNote, setLocationNote] = useState("");
+
+  const navigate = useNavigate();
 
   const clickHandler = () => {
     handleDelete(id);
@@ -25,14 +30,23 @@ function LocationsCard({
   async function addNote(e) {
     e.preventDefault();
     try {
-      const newNote = {note: locationNote}
+      const newNote = { note: locationNote };
       console.log(locationNote);
       const data = await noteAPI.createNote(id, newNote);
-      // navigate("/locations");
+      getLocations();
     } catch (err) {
       console.log(err);
     }
   }
+
+  const deleteNote = async (noteId) => {
+    try {
+      const data = await noteAPI.deleteNote(noteId);
+      getLocations();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Card>
@@ -43,7 +57,6 @@ function LocationsCard({
       <br />
       {zoom}
       <br />
-      {note}
       <br />
       <button onClick={clickHandler}>Delete Location</button>
       <form onSubmit={addNote}>
@@ -57,6 +70,18 @@ function LocationsCard({
         />
         <button type="submit">Add Note</button>
       </form>
+      {notes.map((note) => {
+        console.log(note._id);
+        console.log(note.content);
+        return (
+          <NoteCard
+            key={note._id}
+            content={note.content}
+            noteId={note._id}
+            deleteNote={deleteNote}
+          />
+        );
+      })}
     </Card>
   );
 }

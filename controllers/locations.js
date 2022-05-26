@@ -55,11 +55,26 @@ const addNote = async (req, res) => {
     }
 }
 
+async function deleteNote(req, res) {
+    try {
+
+        const location = await Location.findOne({ 'notes._id': req.params.id, 'notes.username': req.user.username });
+        location.notes.remove(req.params.id) // mutating a document
+        console.log(location, " <-= post in delete!")
+        // req.params.id is the like id 
+        await location.save() // after you mutate a document you must save
+        res.json({ data: 'note removed' })
+    } catch (err) {
+        res.status(400).json({ err })
+    }
+}
+
 
 
 module.exports = {
     create,
     index,
     deleteLocation,
-    addNote
+    addNote,
+    deleteNote
 }
