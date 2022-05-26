@@ -4,7 +4,7 @@ import * as locationsAPI from "../../utils/locationApi";
 import LocationsCard from "../../components/LocationsCard/LocationsCard";
 import Navbar from "../../components/Navbar/Navbar";
 
-const Locations = (user) => {
+const Locations = ({ user, handleLogout }) => {
   const [favLocations, setLocations] = useState([]);
 
   const getLocations = async () => {
@@ -18,12 +18,8 @@ const Locations = (user) => {
 
   const handleDelete = async (locationId) => {
     try {
-      console.log(locationId);
       const data = await locationsAPI.deleteLocation(locationId);
-      console.log(
-        data,
-        "<-  this is the response from the server when we remove a like"
-      );
+      console.log(data);
       getLocations();
     } catch (err) {
       console.log(err);
@@ -36,9 +32,8 @@ const Locations = (user) => {
 
   return (
     <>
-      <Navbar user={user} />
+      <Navbar user={user} handleLogout={handleLogout} />
       {favLocations.map((location) => {
-        console.log(location);
         return (
           <LocationsCard
             location={location}
@@ -55,11 +50,8 @@ const Locations = (user) => {
           />
         );
       })}
-      <Plane className="plane" />
+      <Plane className="plane" lng={-89.05622} lat={35.18088} zoom={8} />
     </>
   );
 };
 export default Locations;
-// lng={favLocations[0].longitude}
-//       lat={favLocations[0].latitude}
-//       zoom={favLocations[0].zoom}

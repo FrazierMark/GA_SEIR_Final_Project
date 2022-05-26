@@ -1,4 +1,5 @@
 const Location = require('../models/location');
+const User = require('../models/user')
 const S3 = require('aws-sdk/clients/s3');
 const { v4: uuidv4 } = require('uuid');
 const s3 = new S3();
@@ -8,7 +9,7 @@ const s3 = new S3();
 const create = async (req, res) => {
     console.log(req.body, 'this is create method', req.user)
     try {
-        const location = await Location.create({ location_description: req.body.description, longitude: req.body.longitude, latitude: req.body.latitude, zoom: req.body.zoom });
+        const location = await Location.create({ location_description: req.body.description, longitude: req.body.longitude, latitude: req.body.latitude, zoom: req.body.zoom, user: req.user });
         console.log(location)
         // make sure the post we're sending back has the user populated
         await location.populate('user');
@@ -23,8 +24,10 @@ const create = async (req, res) => {
 
 async function index(req, res) {
     try {
+        console.log(req.user._id)
         // this populates the user when you find the posts
-        const locations = await Location.find({}).populate('user').exec()
+        const locations = await Location.find({ 'user': req.user._id }).populate('user').exec()
+        console.log(locations)
         res.status(200).json({ locations })
     } catch (err) {
         console.log(err)

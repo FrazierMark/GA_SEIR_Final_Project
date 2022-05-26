@@ -18,7 +18,6 @@ const GeoMap = ({ user, handleLogout }) => {
   const [lat, setLat] = useState(35.18088);
   const [zoom, setZoom] = useState(12);
   const [description, setDescription] = useState("");
-  const [error, setError] = useState("");
 
   function handleChange(e) {
     setDescription(e.target.value);
@@ -35,9 +34,7 @@ const GeoMap = ({ user, handleLogout }) => {
         latitude: lat,
         zoom: zoom,
       };
-      const data = await locationAPI.create(location); // our server is going to return
-      // the created post, that will be inside of data, which is the response from
-      // the server, we then want to set it in state
+      const data = await locationAPI.create(location); 
       navigate("/locations");
     } catch (err) {
       console.log(err);

@@ -11,7 +11,6 @@ const options = {
 
 
 export function createNote(locationId, note) {
-    console.log(note)
     return axios.post(`${BASE_URL}/${locationId}`, note, options)
         .then((res) => {
             console.log("RESPONSE ==== : ", res.data);
@@ -22,7 +21,6 @@ export function createNote(locationId, note) {
 }
 
 export function deleteNote(noteId) {
-    console.log(noteId)
     return axios.delete(`${BASE_URL}/${noteId}`, options)
         .then((res) => {
             console.log("RESPONSE ==== : ", res.data);

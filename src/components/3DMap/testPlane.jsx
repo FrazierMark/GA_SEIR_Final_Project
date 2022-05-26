@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import { OrbitControls, Sky } from "@react-three/drei";
 import Light from "./Light";
+import { useLocation } from "react-router-dom";
 import { getPixels } from "just-give-me-the-pixels";
 import { getPngTile } from "../../utils/tilesApi";
 import Wave from "./WaveShaderMaterial";
@@ -20,6 +21,7 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
   const [heightData, setHeightData] = useState([]);
   const [pngData, setPngData] = useState();
   const [update, setUpdate] = useState([]);
+  const location = useLocation();
 
   const handleClick = () => {
     console.log("Update Geometry!");
@@ -77,9 +79,11 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
 
   return (
     <>
-      <button className="generate_button" onClick={handleClick}>
-        Generate New 3D Terrrain
-      </button>
+      {location.pathname !== "/locations" && (
+        <button className="generate_button" onClick={handleClick}>
+          Generate New 3D Terrrain
+        </button>
+      )}
       <Canvas className="canvas" camera={{ position: [0, 230, 295] }}>
         <mesh
           geometry={meshGeometry}

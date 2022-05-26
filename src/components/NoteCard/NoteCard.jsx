@@ -4,8 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import * as noteAPI from "../../utils/noteApi";
 
 const NoteCard = ({ content, noteId, deleteNote }) => {
-  const [update, setUpdate] = useState(false);
-
   return (
     <div>
       {content}

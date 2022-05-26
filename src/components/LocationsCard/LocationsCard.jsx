@@ -17,8 +17,6 @@ function LocationsCard({
 }) {
   const [locationNote, setLocationNote] = useState("");
 
-  const navigate = useNavigate();
-
   const clickHandler = () => {
     handleDelete(id);
   };
@@ -31,7 +29,6 @@ function LocationsCard({
     e.preventDefault();
     try {
       const newNote = { note: locationNote };
-      console.log(locationNote);
       const data = await noteAPI.createNote(id, newNote);
       getLocations();
     } catch (err) {
@@ -71,8 +68,6 @@ function LocationsCard({
         <button type="submit">Add Note</button>
       </form>
       {notes.map((note) => {
-        console.log(note._id);
-        console.log(note.content);
         return (
           <NoteCard
             key={note._id}

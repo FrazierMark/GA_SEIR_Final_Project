@@ -10,7 +10,6 @@ const options = {
 }
 
 export function create(location) {
-    console.log(location)
     return axios.post(BASE_URL, location, options)
         .then((res) => {
             console.log("RESPONSE ==== : ", res.data);
@@ -22,7 +21,7 @@ export function create(location) {
 
 export const getAll = async () => {
     try {
-        const response = await axios.get(BASE_URL)
+        const response = await axios.get(BASE_URL, options)
         return response;
     } catch (error) {
         console.error(error);
@@ -30,7 +29,6 @@ export const getAll = async () => {
 }
 
 export function deleteLocation(locationId) {
-    console.log(locationId)
     return axios.delete(`${BASE_URL}/${locationId}`, locationId, options)
         .then((res) => {
             console.log(res.data);
