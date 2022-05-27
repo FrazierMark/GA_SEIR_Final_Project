@@ -15,7 +15,6 @@ export default function SignUpPage(props) {
     email: "",
     password: "",
     passwordConf: "",
-    bio: "",
   });
 
   const [selectedFile, setSelectedFile] = useState("");
@@ -23,15 +22,15 @@ export default function SignUpPage(props) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const formData = new FormData(); // new FormData is from the browser
-    formData.append("photo", selectedFile);
+    // const formData = new FormData(); // new FormData is from the browser
+    // formData.append("photo", selectedFile);
 
-    for (let fieldName in state) {
-      formData.append(fieldName, state[fieldName]);
-    }
+    // for (let fieldName in state) {
+    //   formData.append(fieldName, state[fieldName]);
+    // }
 
     try {
-      await userService.signup(formData); // <- we must pass the argument as formData when we have a
+      await userService.signup(state); // <- we must pass the argument as formData when we have a
       // photo
       props.handleSignUpOrLogin(); // <- this will decode the token from local storage
 
@@ -57,11 +56,11 @@ export default function SignUpPage(props) {
   return (
     <>
       <Navbar user={props.user} />
-      <div class="login-wrapper">
-        <form autoComplete="off" class="form" onSubmit={handleSubmit}>
+      <div className="login-wrapper">
+        <form autoComplete="off" className="form" onSubmit={handleSubmit}>
           <img src="https://i.imgur.com/ic7njgq.png" alt="" />
           <h2>Sign Up</h2>
-          <div class="input-group">
+          <div className="input-group">
             <input
               name="username"
               placeholder="username"
@@ -70,7 +69,7 @@ export default function SignUpPage(props) {
               required
             />
           </div>
-          <div class="input-group">
+          <div className="input-group">
             <input
               type="email"
               name="email"
@@ -100,17 +99,17 @@ export default function SignUpPage(props) {
               required
             />
           </div>
-          <form>
-            <div className="input-group">
+          {/* <form> */}
+          {/* <div className="input-group">
               <input
                 type="file"
                 name="photo"
                 placeholder="upload image"
                 onChange={handleFileInput}
               />
-            </div>
-            <input type="submit" value="Sign Up" className="submit-btn"></input>
-          </form>
+            </div> */}
+          <input type="submit" value="Sign Up" className="submit-btn"></input>
+          {/* </form> */}
         </form>
       </div>
     </>

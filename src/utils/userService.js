@@ -1,23 +1,42 @@
 import tokenService from "./tokenService";
+import axios from "axios";
 
 const BASE_URL = "/api/users/";
+const options = {
+  headers: {
+    'Authorization': 'Bearer ' + tokenService.getToken()
+  }
+}
 
+// function signup(user) {
+//   return (
+//     fetch(BASE_URL + "signup", {
+//       method: "POST",
+//       body: user,
+//     })
+//       .then((res) => {
+//         if (res.ok) return res.json();
+//         // Probably a duplicate email
+//         throw new Error("Email already taken!");
+//       })
+//       // Parameter destructuring!
+//       .then(({ token }) => tokenService.setToken(token))
+//   );
+//   //Set Token in local storage
+// }
 
 function signup(user) {
-  return (
-    fetch(BASE_URL + "signup", {
-      method: "POST",
-      body: user,
+  return axios.post(BASE_URL + "signup", user, options)
+    .then((res) => {
+      if (res.ok) return res.json();
+      // Probably a duplicate email
+      throw new Error("Email already taken!");
     })
-      .then((res) => {
-        if (res.ok) return res.json();
-        // Probably a duplicate email
-        throw new Error("Email already taken!");
-      })
-      // Parameter destructuring!
-      .then(({ token }) => tokenService.setToken(token))
-  );
-//Set Token in local storage
+    // Parameter destructuring!
+    .then(({ token }) => tokenService.setToken(token))
+    .catch((err) => {
+      console.log("ERROR: === ", err)
+    })
 }
 
 
