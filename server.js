@@ -3,15 +3,12 @@ const express = require("express");
 const path = require("path");
 const logger = require("morgan");
 const favicon = require("serve-favicon");
-var bodyParser = require("body-parser");
 
 require("./config/database");
 
 // Require controllers here
 
 const app = express();
-app.use(bodyParser.json())
-
 
 // add in when the app is ready to be deployed
 // app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
