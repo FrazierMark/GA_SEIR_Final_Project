@@ -85,7 +85,7 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
           Generate New 3D Terrrain
         </button>
       )}
-      <Canvas className="canvas" camera={{ position: [0, 230, 295] }}>
+      <Canvas className="canvas" camera={{ position: [0, 100, 195] }}>
         <mesh
           geometry={meshGeometry}
           position={[60, -70, 0]}
@@ -102,6 +102,7 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
         {/* <Container /> */}
         {/* <primitive object={new THREE.AxesHelper(10)} /> */}
         <Light />
+        <ambientLight intensity={0.5} />
         <OrbitControls dampingFactor={0.5} enableDamping="true" />
         <Sky
           azimuth={0.1}
