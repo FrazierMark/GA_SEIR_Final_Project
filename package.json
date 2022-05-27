@@ -2,6 +2,9 @@
   "name": "GA_FINAL",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=17.6.0"
+  },
   "dependencies": {
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@react-three/drei": "^9.11.3",
