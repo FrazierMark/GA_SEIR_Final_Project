@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Card, Icon, Image, Form, Button } from "semantic-ui-react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
 import * as noteAPI from "../../utils/noteApi";
 import NoteCard from "../NoteCard/NoteCard";
 
@@ -46,7 +44,7 @@ function LocationsCard({
   };
 
   return (
-    <Card>
+    <div>
       {description} <br />
       {longitude}
       <br />
@@ -77,7 +75,7 @@ function LocationsCard({
           />
         );
       })}
-    </Card>
+    </div>
   );
 }
 

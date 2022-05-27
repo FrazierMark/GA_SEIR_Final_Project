@@ -5,8 +5,7 @@ import Plane from "../3DMap/testPlane";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import Navbar from "../Navbar/Navbar";
-import { Button, Form } from "semantic-ui-react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as locationAPI from "../../utils/locationApi";
 import "./map.css";
 

@@ -1,5 +1,4 @@
 import React from "react";
-import { SvgRocket } from "../Logo/Logo";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
