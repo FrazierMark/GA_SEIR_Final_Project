@@ -1,0 +1,155 @@
+
+ #delete_button {
+    z-index: 10;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+    padding: 5px 7px;
+    border-radius: 5px;
+    background: rgb(255, 130, 201);
+    cursor: pointer;
+  }
+
+  #delete_button2 {
+    z-index: 10;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+    padding: 5px 7px;
+    margin:2px;
+    border-radius: 5px;
+    background: rgb(255, 130, 201);
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle
+  }
+ 
+  table {
+    padding: 20px 10px 10px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 5px;
+    margin: 5px;;
+    color: #fff;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+    opacity: 0.7;
+  }
+
+  #wrapper{
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-gap: 20px;
+    width: 100%; 
+  }
+  #input_add {
+    flex-direction: row;
+    z-index: 10;
+    width: 80%;
+    max-width: 180px;
+    padding: 20px 10px 10px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 5px;
+    margin: 5px;;
+    color: #fff;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+    opacity: 0.7;
+  }
+  #add::before {
+    content:'';
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255, 0.08);
+    transform-origin: bottom left;
+    
+    border-radius: 5px;
+    pointer-events: none;
+  }
+  #add img {
+    position: absolute;
+    width: 130px;
+    background: rgba(255,255,255, 0.8);
+    border-radius: 50%;
+  }
+  #add h2 {
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 3rem;
+    color: #e843c1;
+  }
+  #add #input-add {
+    position: relative;
+  }
+  #add #input-add input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+  }
+  #add #input-add label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: .3s ease-out;
+  }
+  #add #input-add input:focus + label,
+  #add #input-add input:valid + label {
+    transform: translateY(-18px);
+    color: rgb(231, 163, 202);;
+    font-size: .8rem;
+  }
+  #add-btn {
+    display: block;
+    margin-left: auto;
+    border: none;
+    outline: none;
+    background: #ff2fea;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  #forgot-pw {
+    color: inherit;
+  }
+  
+  #forgot-pw {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    z-index: 1;
+    background: #fff;
+    opacity: 0;
+    transition: 0.6s;
+  }
+  #forgot-pw:target {
+    height: 100%;
+    opacity: 1;
+  }
+  #close {
+    position: absolute;
+    right: 1.5rem;
+    top: 0.5rem;
+    font-size: 2rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: inherit;
+  }

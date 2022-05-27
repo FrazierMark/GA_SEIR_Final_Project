@@ -1,5 +1,5 @@
 
- button {
+ #submit-btn {
     z-index: 10;
     position: absolute;
     top: 8em;
@@ -15,7 +15,7 @@
     background: rgb(255, 130, 201);
     cursor: pointer;
   }
- 
+  */
  
 
   .generate_button {
