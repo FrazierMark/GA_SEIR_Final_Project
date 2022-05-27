@@ -42,7 +42,7 @@
   font-size: 20px;
   font-weight: 800;
   justify-content: space-between;
-  padding: 0.4em .4em;
+  padding: 0.4em .9em;
   border: 1px solid #ff69d0;
   box-sizing: border-box;
   text-decoration: none;
@@ -59,7 +59,7 @@
   font-size: 18px;
   font-weight: 800;
   justify-content: space-between;
-  padding: 0.4em .4em;
+  padding: 0.6em .6em;
   box-sizing: border-box;
   text-decoration: none;
   text-transform: uppercase;
