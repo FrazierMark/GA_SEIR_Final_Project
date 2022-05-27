@@ -8,7 +8,7 @@
 - The user (if signed-in and authenticated) can also add or delete private notes to their saved locations.
 
 
-![Screen shot of Geo Map App](https://i.imgur.com/d4BDRSm.png)
+![Screen shot of Geo Map App](https://i.imgur.com/NHL3uUm.png)
 
 
 ## Techologies Used
