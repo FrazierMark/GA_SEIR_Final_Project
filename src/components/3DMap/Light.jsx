@@ -1,8 +1,4 @@
-import { Plane, useHelper } from '@react-three/drei'
-
-import { useControls } from 'leva'
-import React, { Suspense, useRef } from 'react'
-import * as THREE from 'three'
+import React, { useRef } from "react";
 
 function Light() {
   const lightProps = {
@@ -30,4 +26,4 @@ function Light() {
   );
 }
 
-export default Light
+export default Light;
