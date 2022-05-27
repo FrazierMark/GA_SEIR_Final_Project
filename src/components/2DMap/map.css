@@ -17,7 +17,7 @@
 }
 #mapbox_map {
     position: fixed;
-    top: 34em;
+    top: 16em;
     left: 1em;
     z-index: 10;
     width: 500px;
@@ -50,8 +50,8 @@
   #form {
     z-index: 10;
     position: absolute;
-    top: 48em;
-    left: 33em;
+    top: 45.5em;
+    left: 5em;
     width: 80%;
     max-width: 380px;
     padding: 20px 10px 10px;
