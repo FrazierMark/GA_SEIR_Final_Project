@@ -26,6 +26,7 @@ const options = {
 // }
 
 function signup(user) {
+  console.log(user)
   return axios.post(BASE_URL + "signup", user, options)
     .then((res) => {
       if (res.ok) return res.json();
@@ -64,7 +65,7 @@ function login(creds) {
 }
 
 // function login(creds) {
-//   return axios.post(BASE_URL + "login", creds, options)
+//   return axios.post(BASE_URL + "login", JSON.stringify(creds), options)
 //     .then((res) => {
 //       if (res.ok) return res.json();
 //       // Probably a duplicate email
