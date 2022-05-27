@@ -2,7 +2,7 @@
 
 ## GA - SEIR - Final Project
  
-## This is a full stack 3D application that allows users to generate a 3D wireframe-terrain based on real world longitude and latitude points.
+## This is a full stack 3D application that allows users to generate a 3D wireframe-terrain based on real world longitude and latitude.
 - From the main page, users can select longitude and latitude points on a 2D map to then generate a 3D terrain of polygons.
 - The user can signup or login to favorite specific locations based on longitude and latitude.
 - The user (if signed-in and authenticated) can also add or delete private notes to their saved locations.
