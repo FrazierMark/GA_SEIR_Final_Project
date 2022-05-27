@@ -1,10 +1,10 @@
 @font-face {
-  font-family: "Waffold";
-  src: url("../../fonts/Waffold.ttf") format("truetype");
+  font-family: "Baunk";
+  src: url("../../fonts/Baunk.ttf") format("truetype");
 }
 
 .nav {
-  font-family: Waffold;
+  font-family: Baunk;
   height: 60px;
   display: flex;
   background-color: rgb(76, 76, 76);
@@ -18,9 +18,10 @@
 }
 
 .nav__logo {
-  top: 0;
-  width: 100px;
-  height: 80%
+  top: 0px;
+  width: 90px;
+  height: 80%;
+  align-items: top;
 }
 
 .nav__optionLineOne {
@@ -35,6 +36,36 @@
 .nav__optionLineTwo {
   font-size: 20px;
   font-weight: 800;
+  justify-content: space-between;
+  padding: 0.4em .4em;
+  border: 1px solid #ff69d0;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: transparent;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.15s;
+  align-items: center;
+}
+
+.nav__optionLineThree {
+  font-size: 18px;
+  font-weight: 800;
+  justify-content: space-between;
+  padding: 0.4em .4em;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: transparent;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.15s;
+  align-items: center;
+  text-decoration: none;
+  
 }
 
 
@@ -56,10 +87,32 @@
 }
 
 
+.link_button {
+  justify-content: space-between;
+  padding: 0.4em .4em;
+  border: 0.1em solid #ffffff;
+  margin: 0.4em;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: transparent;
+  font-family: "PoiretOne";
+  font-weight: 400;
+  font-size: 1.3em;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.15s;
+  align-items: center;
+}
+
 
   a {
     color: black;
   }
+  a:link {
+    text-decoration: none;
+}
+
   a.button {
     display: inline-block;
     padding: 0.7em 1em;

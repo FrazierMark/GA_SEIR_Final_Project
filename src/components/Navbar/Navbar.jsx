@@ -28,8 +28,8 @@ function Navbar({ user, handleLogout }) {
           </Link>
         )}
         <Link to={!user && "/login"}>
-          <div onClick={handleLogout} className="nav__option">
-            <span className="nav__optionLineOne">
+          <div onClick={handleLogout} className="nav__optionOne">
+            <span className="nav__optionLineThree">
               {!user ? "Guest" : user.email}
             </span>
             <span className="nav__optionLineTwo">
@@ -40,6 +40,8 @@ function Navbar({ user, handleLogout }) {
 
         <Link to="/signup">
           <div className="nav__option">
+          <span className="nav__optionLineOne"> 
+            </span>
             <span className="nav__optionLineTwo"> Sign Up</span>
           </div>
         </Link>

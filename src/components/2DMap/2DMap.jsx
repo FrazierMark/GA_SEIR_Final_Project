@@ -34,7 +34,7 @@ const GeoMap = ({ user, handleLogout }) => {
         latitude: lat,
         zoom: zoom,
       };
-      const data = await locationAPI.create(location); 
+      const data = await locationAPI.create(location);
       navigate("/locations");
     } catch (err) {
       console.log(err);
@@ -112,19 +112,24 @@ const GeoMap = ({ user, handleLogout }) => {
   return (
     <>
       <Navbar user={user} handleLogout={handleLogout} />
-      <Form className="form_field" autoComplete="off" onSubmit={addLocation}>
-        <Form.Input
-          name="description"
-          type="string"
-          placeholder="Description"
-          value={description}
-          onChange={handleChange}
-          required
-        />
-        <Button color="teal" fluid size="large" type="submit" className="btn">
-          Add Location
-        </Button>
-      </Form>
+      {!user ? (
+        ""
+      ) : (
+        <form className="form_field" autoComplete="off" onSubmit={addLocation}>
+          <input
+            name="description"
+            type="string"
+            placeholder="Description"
+            value={description}
+            onChange={handleChange}
+            required
+          />
+          <button color="teal" fluid size="large" type="submit" className="btn">
+            Add Location
+          </button>
+        </form>
+      )}
+
       <div className="mapbox_map" ref={mapContainer}>
         <div className="long_lat_bar">
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}

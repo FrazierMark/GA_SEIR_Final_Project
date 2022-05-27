@@ -1,7 +1,4 @@
-@font-face {
-  font-family: "Waffold";
-  src: url("../../fonts/Waffold.otf") format("opentype");
-}
+
 
 * {
   box-sizing: border-box;
@@ -35,28 +32,6 @@ canvas {
   left: 0;
   outline: none;
   z-index: -1;
-}
-
-.mapbox_map {
-  position: fixed;
-  top: 34em;
-  left: 1em;
-  z-index: 10;
-  width: 500px;
-  height: 500px;
-}
-
-.long_lat_bar {
-  background-color: rgba(35, 55, 75, 0.9);
-  color: #fff;
-  padding: 6px 12px;
-  font-family: monospace;
-  z-index: 1;
-  position: absolute;
-  top: 34em;
-  left: 0;
-  margin: 12px;
-  border-radius: 4px;
 }
 
 .plane {
