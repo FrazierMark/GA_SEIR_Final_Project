@@ -1,7 +1,4 @@
-import { button } from "leva";
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import * as noteAPI from "../../utils/noteApi";
+import React from "react";
 
 const NoteCard = ({ content, noteId, deleteNote }) => {
   return (

@@ -74,7 +74,6 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
 
   useEffect(() => {
     createElevationGrid();
-    // rerenders on change....
   }, [update]);
 
   return (

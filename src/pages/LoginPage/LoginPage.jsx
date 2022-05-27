@@ -1,17 +1,7 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
 import { useNavigate, Link } from "react-router-dom";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Segment,
-} from "semantic-ui-react";
 import Navbar from "../../components/Navbar/Navbar";
 
 export default function LoginPage(props) {
@@ -46,49 +36,36 @@ export default function LoginPage(props) {
 
   return (
     <>
-      <Grid
-        textAlign="center"
-       
-        verticalAlign="middle"
-      >
-        <Grid.Column >
-        <Navbar user={props.user} />
-          <Form autoComplete="off" onSubmit={handleSubmit}>
-            <Segment stacked>
-              <Form.Input
-                type="email"
-                name="email"
-                placeholder="email"
-                value={state.email}
-                onChange={handleChange}
-                required
-              />
-              <Form.Input
-                name="password"
-                type="password"
-                placeholder="password"
-                value={state.password}
-                onChange={handleChange}
-                required
-              />
-              <Button
-                color="teal"
-                fluid
-                size="large"
-                type="submit"
-                className="btn"
-              >
-                Login
-              </Button>
-            </Segment>
-          </Form>
-          <Message>
+      <Navbar user={props.user} />
+      <div class="login-wrapper">
+        <form autoComplete="off" class="form" onSubmit={handleSubmit}>
+        <img src="https://i.imgur.com/ic7njgq.png" alt="" />
+          <h2>Login</h2>
+          <div class="input-group">
+            <input
+              type="email"
+              name="email"
+              placeholder="email"
+              value={state.email}
+              onChange={handleChange}
+              required
+            />
+            <input
+              className="input-group"
+              name="password"
+              type="password"
+              placeholder="password"
+              value={state.password}
+              onChange={handleChange}
+              required
+            />
+            <input type="submit" value="Login" className="submit-btn"></input>
+          </div>
+          <div class="input-group">
             New to us? <Link to="/signup">Sign Up</Link>
-          </Message>
-          {error ? <ErrorMessage error={error} /> : null}
-        </Grid.Column>
-      </Grid>
+          </div>
+        </form>
+      </div>
     </>
   );
 }
-

@@ -13,8 +13,20 @@ function Navbar({ user, handleLogout }) {
           alt="landscape terrain logo"
         />
       </Link>
+      <Link to="/">
+        <h1 className="title">Geo Map</h1>
+      </Link>
 
       <div className="nav__nav">
+        {!user ? (
+          ""
+        ) : (
+          <Link to="/locations">
+            <div className="nav__option">
+              <span className="nav__optionLineTwo"> My Locations</span>
+            </div>
+          </Link>
+        )}
         <Link to={!user && "/login"}>
           <div onClick={handleLogout} className="nav__option">
             <span className="nav__optionLineOne">
@@ -26,19 +38,9 @@ function Navbar({ user, handleLogout }) {
           </div>
         </Link>
 
-        {!user ? (
-          ""
-        ) : (
-          <Link to="/locations">
-            <div className="nav__option">
-              <span className="nav__optionLineOne"> My Locations</span>
-            </div>
-          </Link>
-        )}
-
         <Link to="/signup">
           <div className="nav__option">
-            <span className="nav__optionLineOne"> or Sign Up</span>
+            <span className="nav__optionLineTwo"> Sign Up</span>
           </div>
         </Link>
       </div>
