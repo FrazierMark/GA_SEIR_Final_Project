@@ -39,7 +39,7 @@ export default function LoginPage(props) {
       <Navbar user={props.user} />
       <div class="login-wrapper">
         <form autoComplete="off" class="form" onSubmit={handleSubmit}>
-        <img src="https://i.imgur.com/ic7njgq.png" alt="" />
+          <img src="https://i.imgur.com/ic7njgq.png" alt="" />
           <h2>Login</h2>
           <div class="input-group">
             <input
@@ -50,6 +50,8 @@ export default function LoginPage(props) {
               onChange={handleChange}
               required
             />
+          </div>
+          <div class="input-group">
             <input
               className="input-group"
               name="password"
@@ -59,8 +61,8 @@ export default function LoginPage(props) {
               onChange={handleChange}
               required
             />
-            <input type="submit" value="Login" className="submit-btn"></input>
           </div>
+          <input type="submit" value="Login" className="submit-btn"></input>
           <div class="input-group">
             New to us? <Link to="/signup">Sign Up</Link>
           </div>

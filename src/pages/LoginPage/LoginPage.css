@@ -40,7 +40,8 @@
     text-align: center;
     letter-spacing: 1px;
     margin-bottom: 3rem;
-    color: rgb(239, 35, 151);;
+    font-size: 25px;
+    color: #e843c1;
   }
   .form .input-group {
     position: relative;
@@ -69,7 +70,7 @@
   .form .input-group input:focus + label,
   .form .input-group input:valid + label {
     transform: translateY(-18px);
-    color: rgb(180, 106, 148);;
+    color: #f073d3;
     font-size: .8rem;
   }
   .submit-btn {
@@ -77,7 +78,7 @@
     margin-left: auto;
     border: none;
     outline: none;
-    background: #ff652f;
+    background: #f073d3;
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 1px;

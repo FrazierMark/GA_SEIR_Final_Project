@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
 import userService from "../../utils/userService";
+import "./SignupPage.css";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 
@@ -22,28 +23,18 @@ export default function SignUpPage(props) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    // Create form Data, because we're sending a multipart/formData request,
-    // because we are sending over multiple requests, because we're uploading a photo!
     const formData = new FormData(); // new FormData is from the browser
     formData.append("photo", selectedFile);
-
-    // wrote way of appending each key value pair to form Data
-    // formData.append('username', state.username);
-    // formData.append('email', state.email);
 
     for (let fieldName in state) {
       formData.append(fieldName, state[fieldName]);
     }
 
-    // console.log(formData, " <- formData") // <- this doesn't allow you to look at the formdData object
-    // console.log(formData.forEach((item) => console.log(item))); // <- to look at the keys, you must forEach over it
-
     try {
       await userService.signup(formData); // <- we must pass the argument as formData when we have a
       // photo
       props.handleSignUpOrLogin(); // <- this will decode the token from local storage
-      // that we just recieved as a respone to our userService.signup fetch call,
-      // and decode and update the state in our App component
+
       navigate("/");
     } catch (err) {
       console.log(err.message);
@@ -63,21 +54,24 @@ export default function SignUpPage(props) {
     setSelectedFile(e.target.files[0]);
   }
 
-
   return (
-    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
-      <Grid.Column>
-        <Navbar user={props.user} />
-        <Form autoComplete="off" onSubmit={handleSubmit}>
-          <Segment stacked>
-            <Form.Input
+    <>
+      <Navbar user={props.user} />
+      <div class="login-wrapper">
+        <form autoComplete="off" class="form" onSubmit={handleSubmit}>
+          <img src="https://i.imgur.com/ic7njgq.png" alt="" />
+          <h2>Sign Up</h2>
+          <div class="input-group">
+            <input
               name="username"
               placeholder="username"
               value={state.username}
               onChange={handleChange}
               required
             />
-            <Form.Input
+          </div>
+          <div class="input-group">
+            <input
               type="email"
               name="email"
               placeholder="email"
@@ -85,7 +79,9 @@ export default function SignUpPage(props) {
               onChange={handleChange}
               required
             />
-            <Form.Input
+          </div>
+          <div className="input-group">
+            <input
               name="password"
               type="password"
               placeholder="password"
@@ -93,7 +89,9 @@ export default function SignUpPage(props) {
               onChange={handleChange}
               required
             />
-            <Form.Input
+          </div>
+          <div className="input-group">
+            <input
               name="passwordConf"
               type="password"
               placeholder="Confirm Password"
@@ -101,21 +99,20 @@ export default function SignUpPage(props) {
               onChange={handleChange}
               required
             />
-            <Form.Field>
-              <Form.Input
+          </div>
+          <form>
+            <div className="input-group">
+              <input
                 type="file"
                 name="photo"
                 placeholder="upload image"
                 onChange={handleFileInput}
               />
-            </Form.Field>
-            <Button type="submit" className="btn">
-              Signup
-            </Button>
-          </Segment>
-          {error ? <ErrorMessage error={error} /> : null}
-        </Form>
-      </Grid.Column>
-    </Grid>
+            </div>
+            <input type="submit" value="Sign Up" className="submit-btn"></input>
+          </form>
+        </form>
+      </div>
+    </>
   );
 }
