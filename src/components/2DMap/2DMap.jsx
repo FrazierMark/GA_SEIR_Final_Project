@@ -112,31 +112,33 @@ const GeoMap = ({ user, handleLogout }) => {
   return (
     <>
       <Navbar user={user} handleLogout={handleLogout} />
+
       {!user ? (
         ""
       ) : (
-        <form className="form_field" autoComplete="off" onSubmit={addLocation}>
-          <input
-            name="description"
-            type="string"
-            placeholder="Description"
-            value={description}
-            onChange={handleChange}
-            required
-          />
-          <button color="teal" fluid size="large" type="submit" className="btn">
-            Add Location
-          </button>
+        <form id="form" autoComplete="off" onSubmit={addLocation}>
+          <div id="input-group">
+            <input
+              name="description"
+              type="string"
+              placeholder="Description"
+              value={description}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <input type="submit" value="Save Location" id="add-btn"></input>
         </form>
       )}
 
-      <div className="mapbox_map" ref={mapContainer}>
-        <div className="long_lat_bar">
+      <div id="mapbox_map" ref={mapContainer}>
+        <div id="long_lat_bar">
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
         </div>
         <div />
       </div>
-      <Plane className="plane" lng={lng} lat={lat} zoom={zoom} />
+
+      <Plane id="plane" lng={lng} lat={lat} zoom={zoom} />
     </>
   );
 };

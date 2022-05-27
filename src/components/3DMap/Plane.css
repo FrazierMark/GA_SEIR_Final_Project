@@ -1,0 +1,35 @@
+
+ button {
+    z-index: 10;
+    position: absolute;
+    top: 22em;
+    left: 6em;
+    margin-left: auto;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: rgb(255, 130, 201);
+    cursor: pointer;
+  }
+ 
+ 
+
+  .generate_button {
+    position: absolute;
+    top: 28em;
+    left: 1em;
+    border: 0.1em solid #ffffff;
+    margin: 0 0.1em 0.1em 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #000000;
+    text-align: center;
+    transition: all 0.15s;
+  }
+ 

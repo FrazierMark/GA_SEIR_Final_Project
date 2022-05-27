@@ -14,7 +14,7 @@ function Navbar({ user, handleLogout }) {
         />
       </Link>
       <Link to="/">
-        <h1 className="title">Geo Map</h1>
+        <h1 className="title" >GeoMap</h1>
       </Link>
 
       <div className="nav__nav">

@@ -7,6 +7,8 @@ import { useLocation } from "react-router-dom";
 import { getPixels } from "just-give-me-the-pixels";
 import { getPngTile } from "../../utils/tilesApi";
 import Wave from "./WaveShaderMaterial";
+import "./Plane.css";
+import Container from "./Container";
 
 // From - https://docs.mapbox.com/data/tilesets/guides/access-elevation-data/
 const rgbToHeight = (r, g, b) => {
@@ -79,7 +81,7 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
   return (
     <>
       {location.pathname !== "/locations" && (
-        <button className="generate_button" onClick={handleClick}>
+        <button id="submit-btn" onClick={handleClick}>
           Generate New 3D Terrrain
         </button>
       )}
@@ -97,7 +99,8 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
             // uTexture={"sometexure to get to work"}
           />
         </mesh>
-        <primitive object={new THREE.AxesHelper(10)} />
+        {/* <Container /> */}
+        {/* <primitive object={new THREE.AxesHelper(10)} /> */}
         <Light />
         <OrbitControls dampingFactor={0.5} enableDamping="true" />
         <Sky

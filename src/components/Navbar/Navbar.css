@@ -2,9 +2,13 @@
   font-family: "Baunk";
   src: url("../../fonts/Baunk.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Moon";
+  src: url("../../fonts/Moon2.0-Light.otf") format("opentype");
+}
 
 .nav {
-  font-family: Baunk;
+  font-family: Moon;
   height: 60px;
   display: flex;
   background-color: rgb(76, 76, 76);
@@ -29,6 +33,7 @@
   font-weight: 800;
 }
 .title {
+  font-family: "Baunk";
   font: 70px;
   color: white
 }
