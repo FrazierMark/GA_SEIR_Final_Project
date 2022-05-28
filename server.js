@@ -1,15 +1,13 @@
-require("dotenv").config();
+require('dotenv').config();
 const express = require("express");
 const path = require("path");
 const logger = require("morgan");
 const favicon = require("serve-favicon");
-var bodyParser = require("body-parser");
 var cors = require('cors')
 
 require("./config/database");
 
 const app = express();
-app.use(bodyParser.json())
 app.use(cors())
 
 // add in when the app is ready to be deployed

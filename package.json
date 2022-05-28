@@ -2,6 +2,12 @@
   "name": "GA_FINAL",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "/api/*": {
+      "target": "http://localhost:3001",
+      "secure": false
+    }
+  },
   "dependencies": {
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@react-three/drei": "^9.11.3",
@@ -56,9 +62,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:3001",
-  "devDependencies": {
-    "path-browserify": "^1.0.1"
   }
 }
