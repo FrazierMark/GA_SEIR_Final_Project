@@ -2,12 +2,6 @@
   "name": "GA_FINAL",
   "version": "0.1.0",
   "private": true,
-  "proxy": {
-    "/api/*": {
-      "target": "http://localhost:3001",
-      "secure": false
-    }
-  },
   "dependencies": {
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@react-three/drei": "^9.11.3",
@@ -19,11 +13,10 @@
     "axios": "^0.27.2",
     "babel-plugin-glsl": "^1.0.0",
     "bcrypt": "^5.0.1",
-    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.17.3",
-    "glsl-noise": "^0.0.0",
+    "http-proxy-middleware": "^2.0.6",
     "jsonwebtoken": "^8.5.1",
     "just-give-me-the-pixels": "^1.0.3",
     "mapbox-gl": "^2.8.2",
