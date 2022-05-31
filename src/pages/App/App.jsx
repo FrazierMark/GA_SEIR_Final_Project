@@ -6,43 +6,45 @@ import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import GeoMap from "../../components/2DMap/2DMap";
 import Locations from "../Locations/Locations";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
-  const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object
-  // this object corresponds to the jwt payload which is defined in the server signup or login function that looks like
-  // this  const token = createJWT(user); // where user was the document we created from mongo
+  // const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object
+  // // this object corresponds to the jwt payload which is defined in the server signup or login function that looks like
+  // // this  const token = createJWT(user); // where user was the document we created from mongo
   const navigate = useNavigate();
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
-  function handleSignUpOrLogin() {
-    setUser(userService.getUser()); // getting the user from localstorage decoding the jwt
-  }
+  // function handleSignUpOrLogin() {
+  //   setUser(userService.getUser()); // getting the user from localstorage decoding the jwt
+  // }
 
-  async function handleLogout() {
-    await userService.logout();
-    setUser(null);
-    navigate("/login");
-    //window.location.reload();
-  }
+  // async function handleLogout() {
+  //   await userService.logout();
+  //   setUser(null);
+  //   navigate("/login");
+  //   //window.location.reload();
+  // }
 
   if (user) {
     return (
       <Routes>
         <Route
           path="/"
-          element={<GeoMap user={user} handleLogout={handleLogout} />}
+          element={<GeoMap />}
         />
 
         <Route
           path="/locations"
-          element={<Locations user={user} handleLogout={handleLogout} />}
+          element={<Locations user={user} />}
         />
         <Route
           path="/login"
-          element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+          element={<LoginPage  />}
         />
         <Route
           path="/signup"
-          element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+          element={<SignupPage  />}
         />
       </Routes>
     );
@@ -53,11 +55,11 @@ function App() {
       <Route path="/" element={<GeoMap />} />
       <Route
         path="/login"
-        element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+        element={<LoginPage />}
       />
       <Route
         path="/signup"
-        element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+        element={<SignupPage />}
       />
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>

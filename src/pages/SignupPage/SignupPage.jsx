@@ -3,6 +3,7 @@ import userService from "../../utils/userService";
 import "./SignupPage.css";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import LogoutButton from "../../components/LogoutButton/LogoutButton";
 
 export default function SignUpPage(props) {
   const navigate = useNavigate();
@@ -53,9 +54,9 @@ export default function SignUpPage(props) {
 
   return (
     <>
-      <Navbar user={props.user} />
+      <Navbar />
       <div className="login-wrapper">
-        <form autoComplete="off" className="form" onSubmit={handleSubmit}>
+        {/* <form autoComplete="off" className="form" onSubmit={handleSubmit}>
           <img src="https://i.imgur.com/ic7njgq.png" alt="" />
           <h2>Sign Up</h2>
           <div className="input-group">
@@ -96,9 +97,9 @@ export default function SignUpPage(props) {
               onChange={handleChange}
               required
             />
-          </div>
-          {/* <form> */}
-          {/* <div className="input-group">
+          </div> */}
+        {/* <form> */}
+        {/* <div className="input-group">
               <input
                 type="file"
                 name="photo"
@@ -106,9 +107,10 @@ export default function SignUpPage(props) {
                 onChange={handleFileInput}
               />
             </div> */}
-          <input type="submit" value="Sign Up" className="submit-btn"></input>
-          {/* </form> */}
-        </form>
+        {/* <input type="submit" value="Sign Up" className="submit-btn"></input> */}
+        <LogoutButton className="submit-btn" />
+        {/* </form> */}
+        {/* </form> */}
       </div>
     </>
   );

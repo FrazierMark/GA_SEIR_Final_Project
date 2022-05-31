@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LogoutButton from "../LogoutButton/LogoutButton";
+import LoginButton from "../LoginButton/LoginButton";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./Navbar.css";
 
-function Navbar({ user, handleLogout }) {
+function Navbar() {
+
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
   return (
     <div className="nav">
       <Link to="/">
@@ -27,14 +33,13 @@ function Navbar({ user, handleLogout }) {
           </Link>
         )}
         <Link to={!user && "/login"}>
-          <div onClick={handleLogout} className="nav__optionOne">
+          <LogoutButton className="nav__optionOne" /> 
             <span className="nav__optionLineThree">
               {!user ? "Guest" : user.email}
             </span>
             <span className="nav__optionLineTwo">
               {user ? "Sign Out" : "Sign In"}
             </span>
-          </div>
         </Link>
 
         <Link to="/signup">

@@ -110,7 +110,7 @@ const GeoMap = ({ user, handleLogout }) => {
 
   return (
     <>
-      <Navbar user={user} handleLogout={handleLogout} />
+      <Navbar />
 
       {!user ? (
         ""

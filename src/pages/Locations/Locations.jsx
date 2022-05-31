@@ -4,7 +4,7 @@ import * as locationsAPI from "../../utils/locationApi";
 import LocationsCard from "../../components/LocationsCard/LocationsCard";
 import Navbar from "../../components/Navbar/Navbar";
 
-const Locations = ({ user, handleLogout }) => {
+const Locations = () => {
   const [favLocations, setLocations] = useState([]);
 
   const getLocations = async () => {
@@ -32,7 +32,7 @@ const Locations = ({ user, handleLogout }) => {
 
   return (
     <>
-      <Navbar user={user} handleLogout={handleLogout} />
+      <Navbar />
       {favLocations.map((location) => {
         return (
           <LocationsCard
