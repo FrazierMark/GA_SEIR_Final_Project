@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^1.10.1",
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@react-three/drei": "^9.11.3",
     "@react-three/fiber": "^8.0.12",
@@ -12,19 +13,19 @@
     "aws-sdk": "^2.1136.0",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
-    "just-give-me-the-pixels": "^1.0.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mapbox-gl": "^2.8.2",
     "jsonwebtoken": "^8.5.1",
+    "just-give-me-the-pixels": "^1.0.3",
+    "mapbox-gl": "^2.8.2",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",
     "multer": "^1.4.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.2.1",
-    "three": "^0.139.2",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "three": "^0.139.2"
   },
   "devDependencies": {
     "react-scripts": "^4.0.3"

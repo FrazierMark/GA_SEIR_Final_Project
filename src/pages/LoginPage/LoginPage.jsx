@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./LoginPage.css";
 import userService from "../../utils/userService";
 import { useNavigate, Link } from "react-router-dom";
+import LoginButton from "./Auth0LoginButton";
 import Navbar from "../../components/Navbar/Navbar";
 
 export default function LoginPage(props) {
