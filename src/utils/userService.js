@@ -1,28 +1,40 @@
-import tokenService from "./tokenService";
-import axios from "axios";
+import tokenService from './tokenService';
+import axios from 'axios'
 
-const BASE_URL = "/api/users/";
+const BASE_URL = '/api/users/';
+
 const options = {
   headers: {
     'Authorization': 'Bearer ' + tokenService.getToken()
   }
 }
 
+
 // function signup(user) {
-//   return (
-//     fetch(BASE_URL + "signup", {
-//       method: "POST",
-//       body: user,
-//     })
-//       .then((res) => {
-//         if (res.ok) return res.json();
-//         // Probably a duplicate email
-//         throw new Error("Email already taken!");
-//       })
-//       // Parameter destructuring!
-//       .then(({ token }) => tokenService.setToken(token))
-//   );
-//   //Set Token in local storage
+//   console.log(user)
+//   return fetch(BASE_URL + 'signup', {
+//     method: 'POST',
+//      // If you are sending a file/photo over
+//     // what do datatype do you need to change this too?
+
+//     // multipart/form-data request! <- in our headers, this tells the server hey, there multi
+//     // parts of this request, one of them in our case is a photo!
+
+//     // The browser will detect that it is a multipart form/data request, 
+//     // we just have to make sure the object in the body, is formData not JSON
+
+
+//     body: user // <- user will be the contents of our form, in formdata format!
+//   })
+//   .then(res => {
+//     if (res.ok) return res.json();
+//     // Probably a duplicate email
+//     throw new Error('Email already taken!');
+//   })
+//   // Parameter destructuring!
+//   .then(({token}) => tokenService.setToken(token));
+//   // The above could have been written as
+//   //.then((token) => token.token);
 // }
 
 function signup(user) {
@@ -62,12 +74,25 @@ function login(creds) {
   .then(({token}) => tokenService.setToken(token));
 }
 
+
+
+function getProfile(username){
+  return fetch(BASE_URL + username, {
+    headers: {
+      Authorization: "Bearer " + tokenService.getToken(),
+    }
+  }).then(res => {
+    if(res.ok) return res.json();
+    throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
+  })
+}
+
 const userService = {
-  signup,
+  signup, 
+  getUser,
   logout,
   login,
-  getUser,
+  getProfile
 };
 
-export default userService;
-
+export default userService
