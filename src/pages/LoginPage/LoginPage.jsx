@@ -39,7 +39,7 @@ export default function LoginPage(props) {
     <>
       <Navbar />
       <div className="login-wrapper">
-        <LoginButton className="submit-btn" />
+        <LoginButton />
         {/* <form autoComplete="off" className="form" onSubmit={handleSubmit}>
           <img src="https://i.imgur.com/ic7njgq.png" alt="" />
           <h2>Login</h2>

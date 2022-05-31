@@ -108,7 +108,7 @@ export default function SignUpPage(props) {
               />
             </div> */}
         {/* <input type="submit" value="Sign Up" className="submit-btn"></input> */}
-        <LogoutButton className="submit-btn" />
+        <LogoutButton  />
         {/* </form> */}
         {/* </form> */}
       </div>
