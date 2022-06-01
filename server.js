@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
+var jwt = require('express-jwt');
+var jwks = require('jwks-rsa');
 
 require('./config/database');
 
@@ -33,6 +35,26 @@ app.get('/*', function(req, res) {
 });
 
 const port = process.env.PORT || 3001;
+
+var jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: 'https://m-mark-frazier.us.auth0.com/.well-known/jwks.json'
+  }),
+  audience: 'https://localhost:3001',
+  issuer: 'https://m-mark-frazier.us.auth0.com/',
+  algorithms: ['RS256']
+});
+
+app.use(jwtCheck);
+
+app.get('/authorized', function (req, res) {
+  res.send('Secured Resource');
+});
+
+
 
 app.listen(port, function() {
   console.log(`Express app listening on port ${port}`);
