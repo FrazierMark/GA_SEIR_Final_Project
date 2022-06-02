@@ -1,13 +1,18 @@
 import axios from "axios";
 import tokenService from "./tokenService";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const BASE_URL = "/api/locations/";
+
 
 const options = {
     headers: {
         'Authorization': 'Bearer ' + tokenService.getToken()
     }
 }
+
+export const getOptions
+
 
 export function create(location) {
     return axios.post(BASE_URL, location, options)
@@ -20,6 +25,7 @@ export function create(location) {
 }
 
 export const getAll = async () => {
+    
     try {
         const response = await axios.get(BASE_URL, options)
         return response;
