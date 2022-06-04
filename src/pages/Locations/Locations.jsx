@@ -14,6 +14,7 @@ const Locations = () => {
 
   const getLocations = async () => {
     try {
+      console.log(options)
       const data = await locationsAPI.getAll(options);
       setLocations([...data.data.locations]);
     } catch (err) {
