@@ -12,6 +12,8 @@ module.exports = {
 };
 
 async function signup(req, res) {
+  const userInfo = await req.oidc.fetchUserInfo();
+  console.log(userInfo)
  console.log(req.body, req.file);
 
   // FilePath unique name to be saved to our butckt
