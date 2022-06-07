@@ -1,9 +1,9 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
-const { v4: uuidv4 } = require("uuid");
-const S3 = require("aws-sdk/clients/s3");
-const s3 = new S3(); // initialize the construcotr
+// const { v4: uuidv4 } = require("uuid");
+// const S3 = require("aws-sdk/clients/s3");
+// const s3 = new S3(); // initialize the construcotr
 // now s3 can crud on our s3 buckets
 
 module.exports = {
@@ -12,11 +12,7 @@ module.exports = {
 };
 
 async function signup(req, res) {
- // console.log(req.body, req.file);
-
-  //////////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////
+ console.log(req.body, req.file);
 
   // FilePath unique name to be saved to our butckt
   // const filePath = `${uuidv4()}/${req.file.originalname}`;
@@ -38,8 +34,7 @@ async function signup(req, res) {
       res.status(400).json(err);
     }
 };
-  //////////////////////////////////////////////////////////////////////////////////
-//}
+
 
 async function login(req, res) {
   try {
