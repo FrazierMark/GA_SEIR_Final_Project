@@ -4,6 +4,7 @@ import "./SignupPage.css";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import LogoutButton from "../../components/LogoutButton/LogoutButton";
+import LoginButton from "../../components/LoginButton/LoginButton";
 
 export default function SignUpPage(props) {
   const navigate = useNavigate();
@@ -108,7 +109,7 @@ export default function SignUpPage(props) {
               />
             </div> */}
         {/* <input type="submit" value="Sign Up" className="submit-btn"></input> */}
-        <LogoutButton  />
+        <LoginButton  />
         {/* </form> */}
         {/* </form> */}
       </div>

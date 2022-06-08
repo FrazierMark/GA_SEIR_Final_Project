@@ -5,7 +5,6 @@ const logger = require('morgan');
 const favicon = require('serve-favicon');
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
-const { auth } = require('express-openid-connect');
 
 require('./config/database');
 
@@ -15,14 +14,6 @@ const app = express();
 
 // add in when the app is ready to be deployed
 // app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
-app.use(
-  auth({
-    idpLogout: true,
-    authorizationParams: {
-      response_type: 'code id_token',
-    },
-  })
-);
 
 app.use(logger('dev'));
 app.use(express.json()); // this line configures the server to process json
