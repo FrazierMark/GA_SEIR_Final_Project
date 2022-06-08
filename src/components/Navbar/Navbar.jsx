@@ -22,7 +22,7 @@ function Navbar() {
         <h1 className="title" >GeoMap</h1>
       </Link>
 
-      <div className="nav__nav">
+      {/* <div className="nav__nav">
         {!user ? (
           ""
         ) : (
@@ -49,7 +49,7 @@ function Navbar() {
             <span className="nav__optionLineTwo"> Sign Up</span>
           </div>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }
