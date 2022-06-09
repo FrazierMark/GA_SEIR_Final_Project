@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./LoginPage.css";
 import userService from "../../utils/userService";
 import { useNavigate, Link } from "react-router-dom";
-import LoginButton from "../../components/LoginButton/LoginButton";
 import Navbar from "../../components/Navbar/Navbar";
 
 export default function LoginPage(props) {
@@ -37,10 +36,9 @@ export default function LoginPage(props) {
 
   return (
     <>
-      <Navbar />
+      <Navbar user={props.user} />
       <div className="login-wrapper">
-        <LoginButton />
-        {/* <form autoComplete="off" className="form" onSubmit={handleSubmit}>
+        <form autoComplete="off" className="form" onSubmit={handleSubmit}>
           <img src="https://i.imgur.com/ic7njgq.png" alt="" />
           <h2>Login</h2>
           <div className="input-group">
@@ -68,7 +66,7 @@ export default function LoginPage(props) {
           <div className="input-group">
             New to us? <Link to="/signup">Sign Up</Link>
           </div>
-        </form> */}
+        </form>
       </div>
     </>
   );

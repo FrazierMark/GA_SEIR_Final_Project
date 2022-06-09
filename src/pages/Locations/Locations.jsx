@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import Plane from "../../components/3DMap/GridPlane";
+import Plane from "../../components/3DMap/testPlane";
 import * as locationsAPI from "../../utils/locationApi";
 import LocationsCard from "../../components/LocationsCard/LocationsCard";
 import Navbar from "../../components/Navbar/Navbar";
 
-const Locations = () => {
+const Locations = ({ user, handleLogout }) => {
   const [favLocations, setLocations] = useState([]);
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
-
-  const authToken = getAccessTokenSilently();
-  const options = locationsAPI.getOptions(authToken);
 
   const getLocations = async () => {
     try {
-      console.log(options)
-      const data = await locationsAPI.getAll(options);
+      const data = await locationsAPI.getAll();
       setLocations([...data.data.locations]);
     } catch (err) {
       console.log(err.message, " this is the error");
@@ -38,7 +32,7 @@ const Locations = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user} handleLogout={handleLogout} />
       {favLocations.map((location) => {
         return (
           <LocationsCard

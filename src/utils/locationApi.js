@@ -1,27 +1,15 @@
 import axios from "axios";
 import tokenService from "./tokenService";
-import { useAuth0 } from "@auth0/auth0-react";
 
 const BASE_URL = "/api/locations/";
 
-
-// const options = {
-//     headers: {
-//         'Authorization': 'Bearer ' + tokenService.getToken()
-//     }
-// }
-
-export const getOptions = (authToken) => {
-    const options = {
-        headers: {
-            'Authorization': 'Bearer ' + authToken
-        }
+const options = {
+    headers: {
+        'Authorization': 'Bearer ' + tokenService.getToken()
     }
-    return options
 }
 
-
-export function create(location, options) {
+export function create(location) {
     return axios.post(BASE_URL, location, options)
         .then((res) => {
             console.log("RESPONSE ==== : ", res.data);
@@ -31,8 +19,7 @@ export function create(location, options) {
         })
 }
 
-export const getAll = async (options) => {
-    
+export const getAll = async () => {
     try {
         const response = await axios.get(BASE_URL, options)
         return response;
@@ -41,7 +28,7 @@ export const getAll = async (options) => {
     }
 }
 
-export function deleteLocation(locationId, options) {
+export function deleteLocation(locationId) {
     return axios.delete(`${BASE_URL}/${locationId}`, locationId, options)
         .then((res) => {
             console.log(res.data);

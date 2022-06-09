@@ -1,42 +1,70 @@
-# Geo Map
+# Getting Started with Create React App
 
-## GA - SEIR - Final Project
- 
-## This is a full stack 3D application that allows users to generate a 3D wireframe-terrain based on real world longitude and latitude.
-- From the main page, users can select longitude and latitude points on a 2D map to then generate a 3D terrain of polygons.
-- The user can signup or login to favorite specific locations based on longitude and latitude.
-- The user (if signed-in and authenticated) can also add or delete private notes to their saved locations.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Available Scripts
 
-![Screen shot of Geo Map App](https://i.imgur.com/NHL3uUm.png)
+In the project directory, you can run:
 
+### `yarn start`
 
-## Techologies Used
-* JavaScript
-* Express
-* MongoDB / Mongoose
-* React
-* NodeJS
-* Mapbox GL JS
-* ThreeJS / React-Three-Fiber
-* Heroku
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Getting Started & Live Link
-* [Geo Map]()
-* [Trello Board](https://trello.com/b/ujXYnJu3/gaseifinal)
-* [ERD](https://lucid.app/lucidchart/1fa1d25e-19ee-4f54-8494-bbb127f21541/edit?page=0_0&invitationId=inv_a6b9de1a-f366-4618-99b8-d7ff4984a52d#)
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
- 
-#### To run locally, clone the repository and open the project in your editor
-* In the project directory, you can run:
-#### 'npm install'
-* Installs node modules
-#### 'npm start'
-* Runs the app in development mode on http://localhost:3000
-* The page should reload on edits
+### `yarn test`
 
-## Next Steps
-* As a user, I want to be greated with a personalized message at login.
-* As a user, I want to be able to upload my own .glb models to view.
-* As a user, I want to be able to adjust the lighting of the 3D scene.
- 
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `yarn build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `yarn build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

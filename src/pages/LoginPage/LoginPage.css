@@ -72,23 +72,12 @@
   color: rgb(231, 163, 202);;
   font-size: .8rem;
 }
-.login {
-  border: none;
-  outline: none;
-  background: rgb(255, 130, 201);
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
 .submit-btn {
   display: block;
   margin-left: auto;
   border: none;
   outline: none;
-  background: rgb(255, 130, 201);
+  background: #ff652f;
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;

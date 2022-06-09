@@ -1,14 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import LogoutButton from "../LogoutButton/LogoutButton";
-import LoginButton from "../LoginButton/LoginButton";
-import { useAuth0 } from "@auth0/auth0-react";
 import "./Navbar.css";
 
-function Navbar() {
-
-  const { user, isAuthenticated, isLoading } = useAuth0();
-
+function Navbar({ user, handleLogout }) {
   return (
     <div className="nav">
       <Link to="/">
@@ -22,7 +16,7 @@ function Navbar() {
         <h1 className="title" >GeoMap</h1>
       </Link>
 
-      {/* <div className="nav__nav">
+      <div className="nav__nav">
         {!user ? (
           ""
         ) : (
@@ -33,13 +27,14 @@ function Navbar() {
           </Link>
         )}
         <Link to={!user && "/login"}>
-          <LogoutButton className="nav__optionOne" /> 
+          <div onClick={handleLogout} className="nav__optionOne">
             <span className="nav__optionLineThree">
               {!user ? "Guest" : user.email}
             </span>
             <span className="nav__optionLineTwo">
               {user ? "Sign Out" : "Sign In"}
             </span>
+          </div>
         </Link>
 
         <Link to="/signup">
@@ -49,7 +44,7 @@ function Navbar() {
             <span className="nav__optionLineTwo"> Sign Up</span>
           </div>
         </Link>
-      </div> */}
+      </div>
     </div>
   );
 }

@@ -93,6 +93,21 @@ function LocationsCard({
           </tr>
         </tbody>
       </table>
+      {/* <form>
+        <input
+          id="input_add"
+          name="content"
+          type="string"
+          placeholder="Description"
+          value={locationNote}
+          onChange={handleChange}
+          required
+        />
+
+        <button id="delete_button" type="submit" onSubmit={addNote}>
+          Add Note
+        </button>
+      </form> */}
       <form onSubmit={addNote}>
         <input
           id="input_add"

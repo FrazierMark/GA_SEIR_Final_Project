@@ -1,13 +1,13 @@
 #btn {
-  position: absolute;
-  top: 22em;
-  right: 10em;
+    position: absolute;
+    top: 22em;
+    right: 10em
 }
 
 #form_field {
-  position: absolute;
-  top: 15em;
-  right: 10em;
+    position: absolute;
+    top: 15em;
+    right: 10em
 }
 
 #page_container {
@@ -16,149 +16,150 @@
   grid-template-rows: 1fr 1fr 1fr;
 }
 #mapbox_map {
-  position: absolute;
-  top: 16em;
-  left: 1em;
-  z-index: 10;
-  width: 500px;
-  height: 500px;
-}
+    position: fixed;
+    top: 16em;
+    left: 1em;
+    z-index: 10;
+    width: 500px;
+    height: 500px;
+  }
+  
+  #long_lat_bar {
+    background-color: rgba(35, 55, 75, 0.9);
+    color: #fff;
+    padding: 6px 12px;
+    font-family: monospace;
+    z-index: 1;
+    position: absolute;
+    top: 34em;
+    left: 0;
+    margin: 12px;
+    border-radius: 2px;
+  }
 
-#long_lat_bar {
-  background-color: rgba(35, 55, 75, 0.9);
-  color: #fff;
-  padding: 6px 12px;
-  font-family: monospace;
-  z-index: 1;
-  position: absolute;
-  top: 34em;
-  left: 0;
-  margin: 12px;
-  border-radius: 2px;
-}
-
-#login-wrapper {
-  position: absolute;
-  top: 10em;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#form {
-  z-index: 10;
-  position: absolute;
-  top: 45.5em;
-  left: 5em;
-  width: 80%;
-  max-width: 380px;
-  padding: 20px 10px 10px;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 5px;
-  color: #fff;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
-  opacity: 0.7;
-}
-#form::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  transform: skewX(-26deg);
-  transform-origin: bottom left;
-
-  border-radius: 5px;
-  pointer-events: none;
-}
-#form img {
-  position: absolute;
-  top: -50px;
-  left: calc(50% - 50px);
-  width: 130px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-}
-#form h2 {
-  text-align: center;
-  letter-spacing: 1px;
-  margin-bottom: 3rem;
-  color: #e843c1;
-}
-#form #input-group {
-  position: relative;
-}
-#form #input-group input {
-  width: 100%;
-  padding: 10px 0;
-  font-size: 1rem;
-  letter-spacing: 1px;
-  margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid #fff;
-  outline: none;
-  background-color: transparent;
-  color: inherit;
-}
-#form #input-group label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px 0;
-  font-size: 1rem;
-  pointer-events: none;
-  transition: 0.3s ease-out;
-}
-#form #input-group input:focus + label,
-#form #input-group input:valid + label {
-  transform: translateY(-18px);
-  color: rgb(231, 163, 202);
-  font-size: 0.8rem;
-}
-#add-btn {
-  display: block;
-  margin-left: auto;
-  border: none;
-  outline: none;
-  background: #ff2fea;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-#forgot-pw {
-  color: inherit;
-}
-
-#forgot-pw {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 0;
-  z-index: 1;
-  background: #fff;
-  opacity: 0;
-  transition: 0.6s;
-}
-#forgot-pw:target {
-  height: 100%;
-  opacity: 1;
-}
-#close {
-  position: absolute;
-  right: 1.5rem;
-  top: 0.5rem;
-  font-size: 2rem;
-  font-weight: 900;
-  text-decoration: none;
-  color: inherit;
-}
+  #login-wrapper {
+    position: absolute;
+    top: 10em;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+  }
+  #form {
+    z-index: 10;
+    position: absolute;
+    top: 45.5em;
+    left: 5em;
+    width: 80%;
+    max-width: 380px;
+    padding: 20px 10px 10px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+    opacity: 0.7;
+  }
+  #form::before {
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255, 0.08);
+    transform: skewX(-26deg);
+    transform-origin: bottom left;
+    
+    border-radius: 5px;
+    pointer-events: none;
+  }
+  #form img {
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+    width: 130px;
+    background: rgba(255,255,255, 0.8);
+    border-radius: 50%;
+  }
+  #form h2 {
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 3rem;
+    color: #e843c1;
+  }
+  #form #input-group {
+    position: relative;
+  }
+  #form #input-group input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+  }
+  #form #input-group label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: .3s ease-out;
+  }
+  #form #input-group input:focus + label,
+  #form #input-group input:valid + label {
+    transform: translateY(-18px);
+    color: rgb(231, 163, 202);;
+    font-size: .8rem;
+  }
+  #add-btn {
+    display: block;
+    margin-left: auto;
+    border: none;
+    outline: none;
+    background: #ff2fea;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  #forgot-pw {
+    color: inherit;
+  }
+  
+  #forgot-pw {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    z-index: 1;
+    background: #fff;
+    opacity: 0;
+    transition: 0.6s;
+  }
+  #forgot-pw:target {
+    height: 100%;
+    opacity: 1;
+  }
+  #close {
+    position: absolute;
+    right: 1.5rem;
+    top: 0.5rem;
+    font-size: 2rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: inherit;
+  }

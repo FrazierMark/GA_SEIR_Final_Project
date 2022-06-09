@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import { getPixels } from "just-give-me-the-pixels";
 import { getPngTile } from "../../utils/tilesApi";
 import "./Plane.css";
+import Container from "./Container";
 
 // From - https://docs.mapbox.com/data/tilesets/guides/access-elevation-data/
 const rgbToHeight = (r, g, b) => {
