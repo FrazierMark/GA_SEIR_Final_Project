@@ -1,5 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+var webpack = require('webpack')
+var path = require('path')
 
 module.exports = {
     module: {
@@ -10,8 +12,17 @@ module.exports = {
             },
             {
                 test: /\bmapbox-gl-csp-worker.js\b/i,
-                use: { loader: 'worker-loader' }
+                use: { loader: 'worker-loader' },
             },
+            {
+                test: /\.js$/,
+                include: path.resolve(__dirname, 'node_modules/webworkify/index.js'),
+                loader: 'worker'
+              },
+              {
+                test: /mapbox-gl.+\.js$/,
+                loader: 'transform/cacheable?brfs'
+              },
         ],
     },
     optimization: {
@@ -20,13 +31,7 @@ module.exports = {
             // `...`,
             new CssMinimizerPlugin(),
         ],
-    },
-    use: {
-        loader: 'babel-loader',
-        options: {
-            presets: ['my-custom-babel-preset'],
-            ignore: ['./node_modules/mapbox-gl/dist/mapbox-gl.js']
-        }
-    },      
+    },    
     plugins: [new MiniCssExtractPlugin()],
 };
+

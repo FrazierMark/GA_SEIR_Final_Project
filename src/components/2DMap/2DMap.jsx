@@ -11,7 +11,6 @@ import "./map.css";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 
-
 const GeoMap = ({ user, handleLogout }) => {
   const mapContainer = useRef();
   const [lng, setLng] = useState(-90.05622);
@@ -43,6 +42,7 @@ const GeoMap = ({ user, handleLogout }) => {
 
   useEffect(() => {
     // Creates 2D map
+
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/satellite-streets-v11",
