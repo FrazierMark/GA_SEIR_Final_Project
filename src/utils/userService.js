@@ -26,11 +26,11 @@ const options = {
 //   //Set Token in local storage
 // }
 
-function signup(user) {
+async function signup(user) {
   // console.log(user, "<----- from userService")
   // Don't need to include headers....
 
-  return axios.post(BASE_URL + "signup", user)
+  return await axios.post(BASE_URL + "signup", user)
     .then((res) => {
       if (res.ok) return res.json();
       // Probably a duplicate email
@@ -52,8 +52,8 @@ function logout() {
   tokenService.removeToken();
 }
 
-function login(creds) {
-  return fetch(BASE_URL + "login", {
+async function login(creds) {
+  return await fetch(BASE_URL + "login", {
     method: "POST",
     headers: new Headers({ "Content-Type": "application/json" }),
     body: JSON.stringify(creds),
