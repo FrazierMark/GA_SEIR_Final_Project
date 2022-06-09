@@ -2,6 +2,7 @@ import tokenService from "./tokenService";
 import axios from "axios";
 
 const BASE_URL = "/api/users/";
+const AXIOS_BASE_URL = "api/users/";
 const options = {
   headers: {
     'Authorization': 'Bearer ' + tokenService.getToken()
@@ -26,7 +27,10 @@ const options = {
 // }
 
 function signup(user) {
-  return axios.post(BASE_URL + "signup", user, options)
+  // console.log(user, "<----- from userService")
+  // Don't need to include headers....
+
+  return axios.post(BASE_URL + "signup", user)
     .then((res) => {
       if (res.ok) return res.json();
       // Probably a duplicate email

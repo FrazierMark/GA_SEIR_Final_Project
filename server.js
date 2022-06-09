@@ -10,7 +10,7 @@ require("./config/database");
 // Require controllers here
 
 const app = express();
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
 
 
 // add in when the app is ready to be deployed
