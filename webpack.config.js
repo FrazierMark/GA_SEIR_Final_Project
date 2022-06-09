@@ -5,6 +5,11 @@ var path = require('path')
 
 module.exports = {
     module: {
+        babel: {
+            loaderOptions: {
+              ignore: ['./node_modules/mapbox-gl/dist/mapbox-gl.js'],
+            },
+          },
         rules: [
             {
                 test: /.s?css$/,

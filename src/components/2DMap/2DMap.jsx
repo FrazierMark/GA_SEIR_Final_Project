@@ -8,8 +8,10 @@ import Navbar from "../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import * as locationAPI from "../../utils/locationApi";
 import "./map.css";
+//import MapboxWorker from "mapbox-gl/dist/mapbox-gl-csp-worker";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
+//mapboxgl.workerClass = MapboxWorker;
 
 const GeoMap = ({ user, handleLogout }) => {
   const mapContainer = useRef();
