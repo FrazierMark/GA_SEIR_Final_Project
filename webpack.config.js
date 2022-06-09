@@ -8,6 +8,10 @@ module.exports = {
                 test: /.s?css$/,
                 use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
             },
+            {
+                test: /\bmapbox-gl-csp-worker.js\b/i,
+                use: { loader: 'worker-loader' }
+            },
         ],
     },
     optimization: {
