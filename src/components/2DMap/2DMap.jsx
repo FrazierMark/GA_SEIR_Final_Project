@@ -3,7 +3,6 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Plane from "../3DMap/testPlane";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
-import MapboxWorker from "mapbox-gl/dist/mapbox-gl-csp-worker";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import Navbar from "../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +10,7 @@ import * as locationAPI from "../../utils/locationApi";
 import "./map.css";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
-mapboxgl.workerClass = MapboxWorker;
+
 
 const GeoMap = ({ user, handleLogout }) => {
   const mapContainer = useRef();
