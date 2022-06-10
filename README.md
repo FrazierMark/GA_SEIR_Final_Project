@@ -37,6 +37,4 @@
 
 ## Next Steps
 * As a user, I want to be greated with a personalized message at login.
-* As a user, I want to be able to upload my own .glb models to view.
-* As a user, I want to be able to adjust the lighting of the 3D scene.
  
