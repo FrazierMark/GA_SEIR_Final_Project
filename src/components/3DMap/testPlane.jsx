@@ -1,18 +1,53 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, extend } from "@react-three/fiber";
 import * as THREE from "three";
-import { OrbitControls, Sky } from "@react-three/drei";
+import { OrbitControls, Sky, shaderMaterial } from "@react-three/drei";
 import Light from "./Light";
 import { useLocation } from "react-router-dom";
 import { getPixels } from "just-give-me-the-pixels";
 import { getPngTile } from "../../utils/tilesApi";
+import glsl from "babel-plugin-glsl/macro";
 import "./Plane.css";
-import Container from "./Container";
 
 // From - https://docs.mapbox.com/data/tilesets/guides/access-elevation-data/
 const rgbToHeight = (r, g, b) => {
   return -10000 + (r * 256 * 256 + g * 256 + b) * 0.1;
 };
+
+const WaveShaderMaterial = shaderMaterial(
+  //Uniform - Javascript Data sent to the shader
+  { uColor: new THREE.Color(0.0, 0.0, 0.0) },
+
+  //Vertex Shader
+  glsl`
+
+  varying vec2 vUv;
+  varying float vElevation;
+
+  void main() {
+
+    vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+
+    float elevation = modelPosition.x;
+
+    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
+
+    vElevation = elevation;
+    vUv = uv;
+}`,
+
+  //Fragment Shader
+  glsl`
+
+  uniform vec3 uColor;
+
+    void main() {
+        gl_FragColor = vec4(uColor, 1.0);
+    }
+    `
+);
+
+extend({ WaveShaderMaterial });
 
 const Plane = ({ lng, lat, zoom, favLocations }) => {
   const ref = useRef();
@@ -70,7 +105,7 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
     });
 
     setMeshGeometry(customPlaneGeometry);
-    //customPlaneGeometry.attributes.position.needsUpdate = true;
+    console.log(customPlaneGeometry);
   };
 
   useEffect(() => {
@@ -90,16 +125,18 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
           position={[60, -70, 0]}
           rotation={[4.64, 0, 0]}
         >
-          <meshStandardMaterial
+          {/* <meshStandardMaterial
             color={"hotpink"}
-            ref={ref}
             side={THREE.DoubleSide}
             wireframe={true}
             // uTexture={"sometexure to get to work"}
+          /> */}
+          <waveShaderMaterial
+            uColor={"hotpink"}
+            wireframe={true}
+            side={THREE.DoubleSide}
           />
         </mesh>
-        {/* <Container /> */}
-        {/* <primitive object={new THREE.AxesHelper(10)} /> */}
         <Light />
         <ambientLight intensity={0.5} />
         <OrbitControls dampingFactor={0.5} enableDamping="true" />
