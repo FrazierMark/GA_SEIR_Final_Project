@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas, extend } from "@react-three/fiber";
 import * as THREE from "three";
-import { OrbitControls, Sky, shaderMaterial } from "@react-three/drei";
+import { OrbitControls, Sky, shaderMaterial, Float } from "@react-three/drei";
 import Light from "./Light";
 import { useLocation } from "react-router-dom";
 import { getPixels } from "just-give-me-the-pixels";
@@ -21,8 +21,11 @@ const WaveShaderMaterial = shaderMaterial(
   //Vertex Shader
   glsl`
 
+  attribute vec3 aPosition;
+
   varying vec2 vUv;
   varying float vElevation;
+  varying vec3 vPosition;
 
   void main() {
 
@@ -34,16 +37,34 @@ const WaveShaderMaterial = shaderMaterial(
 
     vElevation = elevation;
     vUv = uv;
+    vPosition = aPosition;
 }`,
 
   //Fragment Shader
   glsl`
 
   uniform vec3 uColor;
+  
+  
+  varying vec2 vUv;
+  varying float vElevation;
+  varying vec3 vPosition;
+
 
     void main() {
-        gl_FragColor = vec4(uColor, 1.0);
-    }
+
+     // vec3 elevationColor = uColor.b
+
+      //uColor.b = vPosition.z / 10.0;
+      vec3 anotherColor = vec3(vUv, vPosition.z);
+
+      vec3 elevationColor = vec3(uColor * anotherColor);
+      //elevationColor.rgb += vPosition.z;
+
+
+      gl_FragColor = vec4(elevationColor, 1.0);
+
+      }
     `
 );
 
@@ -54,13 +75,12 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
   const [pixelArray, setPixelArray] = useState([]);
   const [planeSize, setPlaneSize] = useState();
   const [meshGeometry, setMeshGeometry] = useState();
-  const [heightData, setHeightData] = useState([]);
+  const [heightDataState, setHeightDataState] = useState([]);
   const [pngData, setPngData] = useState();
   const [update, setUpdate] = useState([]);
   const location = useLocation();
 
   const handleClick = () => {
-    console.log("Update Geometry!");
     const tempLng = Number(lng);
     const tempLat = Number(lat);
     setUpdate(getPngTile(tempLng, tempLat, zoom));
@@ -84,6 +104,8 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
       const height = rgbToHeight(r, g, b);
       heightData.push(height);
     }
+    setHeightDataState(heightData);
+
     // used to normalize data between all elevation levels
     const ratio = Math.max.apply(Math, heightData) / 80;
 
@@ -105,7 +127,6 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
     });
 
     setMeshGeometry(customPlaneGeometry);
-    console.log(customPlaneGeometry);
   };
 
   useEffect(() => {
