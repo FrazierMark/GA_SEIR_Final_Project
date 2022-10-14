@@ -9,35 +9,17 @@ const options = {
   }
 }
 
-// function signup(user) {
-//   return (
-//     fetch(BASE_URL + "signup", {
-//       method: "POST",
-//       body: user,
-//     })
-//       .then((res) => {
-//         if (res.ok) return res.json();
-//         // Probably a duplicate email
-//         throw new Error("Email already taken!");
-//       })
-//       // Parameter destructuring!
-//       .then(({ token }) => tokenService.setToken(token))
-//   );
-//   //Set Token in local storage
-// }
+
 
 async function signup(user) {
-  // console.log(user, "<----- from userService")
-  // Don't need to include headers....
-
   return await axios.post(BASE_URL + "signup", user)
     .then((res) => {
-      if (res.ok) return res.json();
-      // Probably a duplicate email
-      throw new Error("Email already taken!");
-    })
-    // Parameter destructuring!
-    .then(({ token }) => tokenService.setToken(token))
+        if (res.status === 200)
+          tokenService.setToken(res.data.token)
+        else {
+          throw new Error("Email already taken!")
+        };
+      })
     .catch((err) => {
       console.log("ERROR: === ", err)
     })
