@@ -16,7 +16,11 @@ const rgbToHeight = (r, g, b) => {
 
 const WaveShaderMaterial = shaderMaterial(
   //Uniform - Javascript Data sent to the shader
-  { uColor: new THREE.Color(0.0, 0.0, 0.0) },
+  {
+    uColor: new THREE.Color(0.0, 0.0, 0.0),
+    u_ColorA: new THREE.Color("#FFE486"),
+    u_ColorB: new THREE.Color("#FEB3D9"),
+  },
 
   //Vertex Shader
   glsl`
@@ -26,43 +30,48 @@ const WaveShaderMaterial = shaderMaterial(
   varying vec2 vUv;
   varying float vElevation;
   varying vec3 vPosition;
+  varying float vZ;
 
   void main() {
 
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
 
     float elevation = modelPosition.x;
+    float vZ = modelPosition.y;
 
-    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
+    //gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
+
+    vec4 viewPosition = viewMatrix * modelPosition;
+    vec4 projectedPosition = projectionMatrix * viewPosition;
+  
+    gl_Position = projectedPosition;
 
     vElevation = elevation;
     vUv = uv;
     vPosition = aPosition;
+    
 }`,
 
   //Fragment Shader
   glsl`
 
   uniform vec3 uColor;
+  uniform vec3 u_ColorA;
+  uniform vec3 u_ColorB;
   
   
   varying vec2 vUv;
   varying float vElevation;
   varying vec3 vPosition;
+  varying float vZ;
 
 
     void main() {
 
-     // vec3 elevationColor = uColor.b
+     vec3 color = mix(u_ColorA, u_ColorB, (vZ * 0.2 )); 
+      //gl_FragColor = vec4(color, 1.0);
 
-      //uColor.b = vPosition.z / 10.0;
-      vec3 anotherColor = vec3(vUv, vPosition.z);
-
-      vec3 elevationColor = vec3(uColor * anotherColor);
-      //elevationColor.rgb += vPosition.z;
-
-
-      gl_FragColor = vec4(elevationColor, 1.0);
+      gl_FragColor = vec4(color, 1.0);
 
       }
     `
@@ -107,7 +116,7 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
     setHeightDataState(heightData);
 
     // used to normalize data between all elevation levels
-    const ratio = Math.max.apply(Math, heightData) / 80;
+    const ratio = Math.max.apply(Math, heightData) / 90;
 
     const customPlaneGeometry = new THREE.PlaneBufferGeometry(
       256,
@@ -154,7 +163,7 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
           /> */}
           <waveShaderMaterial
             uColor={"hotpink"}
-            wireframe={true}
+            wireframe={false}
             side={THREE.DoubleSide}
           />
         </mesh>
