@@ -155,15 +155,9 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
           position={[60, -70, 0]}
           rotation={[4.64, 0, 0]}
         >
-          {/* <meshStandardMaterial
-            color={"hotpink"}
-            side={THREE.DoubleSide}
-            wireframe={true}
-            // uTexture={"sometexure to get to work"}
-          /> */}
           <waveShaderMaterial
             uColor={"hotpink"}
-            wireframe={false}
+            wireframe={true}
             side={THREE.DoubleSide}
           />
         </mesh>
