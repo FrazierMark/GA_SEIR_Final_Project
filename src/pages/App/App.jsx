@@ -18,7 +18,7 @@ function App() {
   }
 
   async function handleLogout() {
-    await userService.logout();
+    userService.logout();
     setUser(null);
     navigate("/login");
     //window.location.reload();
