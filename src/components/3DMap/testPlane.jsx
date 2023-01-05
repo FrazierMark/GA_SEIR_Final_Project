@@ -8,11 +8,8 @@ import { getPixels } from "just-give-me-the-pixels";
 import { getPngTile } from "../../utils/tilesApi";
 import glsl from "babel-plugin-glsl/macro";
 import "./Plane.css";
+import { rgbToHeight } from "./PlaneFunctions.jsx";
 
-// From - https://docs.mapbox.com/data/tilesets/guides/access-elevation-data/
-const rgbToHeight = (r, g, b) => {
-  return -10000 + (r * 256 * 256 + g * 256 + b) * 0.1;
-};
 
 const WaveShaderMaterial = shaderMaterial(
   //Uniform - Javascript Data sent to the shader

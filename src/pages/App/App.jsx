@@ -4,7 +4,7 @@ import "./App.css";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
-import GeoMap from "../../components/2DMap/2DMap";
+import MapboxMap from "../../components/MapboxMap/MapboxMap";
 import Locations from "../Locations/Locations";
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<GeoMap user={user} handleLogout={handleLogout} />}
+          element={<MapboxMap user={user} handleLogout={handleLogout} />}
         />
 
         <Route
@@ -50,7 +50,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<GeoMap />} />
+      <Route path="/" element={<MapboxMap />} />
       <Route
         path="/login"
         element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}

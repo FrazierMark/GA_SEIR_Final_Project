@@ -13,7 +13,7 @@ import "./map.css";
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_TOKEN;
 //mapboxgl.workerClass = MapboxWorker;
 
-const GeoMap = ({ user, handleLogout }) => {
+const MapboxMap = ({ user, handleLogout }) => {
   const mapContainer = useRef();
   const [lng, setLng] = useState(-90.05622);
   const [lat, setLat] = useState(35.18088);
@@ -44,7 +44,6 @@ const GeoMap = ({ user, handleLogout }) => {
 
   useEffect(() => {
     // Creates 2D map
-
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/satellite-streets-v11",
@@ -75,35 +74,6 @@ const GeoMap = ({ user, handleLogout }) => {
 
     // Only want to work with the map after it has fully loaded
     map.on("load", async () => {
-      // Add mapbox terrain dem source for 3d terrain rendering
-      // map.addSource("mapbox-dem", {
-      //   type: "raster-dem",
-      //   url: "mapbox://mapbox.terrain-rgb",
-      //   tileSize: 256,
-      //   maxZoom: 16,
-      // });
-      // map.setTerrain({
-      //   source: "mapbox-dem",
-      //   exaggeration: 1.5,
-      // });
-
-      // Add sky layer
-      map.addLayer({
-        id: "sky",
-        type: "sky",
-        paint: {
-          "sky-type": "atmosphere",
-          "sky-atmosphere-sun": [0.0, 90.0],
-          "sky-atmosphere-sun-intensity": 15,
-        },
-      });
-
-      // Add Fog
-      map.setFog({
-        range: [-0.5, 20],
-        color: "grey",
-        "horizon-blend": 0.1,
-      });
       await map.once("idle");
     });
 
@@ -145,4 +115,4 @@ const GeoMap = ({ user, handleLogout }) => {
   );
 };
 
-export default GeoMap;
+export default MapboxMap;

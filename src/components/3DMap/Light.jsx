@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import * as THREE from "three";
 
 function Light() {
   const lightProps = {
@@ -11,7 +10,6 @@ function Light() {
     attenuation: 2,
   };
   const mainLightRef = useRef();
-  // useHelper(mainLightRef, THREE.SpotLightHelper, 'red')
 
   return (
     <>
