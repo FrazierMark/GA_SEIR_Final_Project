@@ -21,10 +21,9 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
   const [update, setUpdate] = useState([]);
   const location = useLocation();
 
-  const { dark, color, environment, ...config } = useControls({
-    uMinElevation: { value: 1.0, min: 0, max: 99 },
-    uMaxElevation: { value: 1.0, min: 0, max: 99 },
-    uTime: { value: 0 },
+  const { ...config } = useControls({
+    uMinElevation: { value: 0.4, min: 0, max: 10 },
+    uMaxElevation: { value: 0.4, min: 0, max: 90 },
   });
 
   const handleClick = () => {
@@ -105,6 +104,7 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
               uMinElevation={1}
               wireframe={true}
               side={THREE.DoubleSide}
+              {...config}
             />
           </mesh>
         </Float>
