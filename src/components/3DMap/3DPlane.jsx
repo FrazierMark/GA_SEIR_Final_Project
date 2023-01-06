@@ -22,8 +22,9 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
   const location = useLocation();
 
   const { ...config } = useControls({
-    uMinElevation: { value: 0.4, min: 0, max: 10 },
-    uMaxElevation: { value: 0.4, min: 0, max: 90 },
+    uMinElevation: { value: 46.0, min: 0, max: 100 },
+    uMaxElevation: { value: 54.0, min: 0, max: 100 },
+    uMidElevation: { value: 40.0, min: 0, max: 100 },
   });
 
   const handleClick = () => {
@@ -88,7 +89,7 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
       )}
       <Canvas className="canvas" camera={{ position: [0, 100, 195] }}>
         <Light />
-        <Float>
+        <Float rotationIntensity={0.4}>
           <mesh
             geometry={meshGeometry}
             position={[60, -70, 0]}
@@ -100,8 +101,9 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
               side={THREE.DoubleSide}
             /> */}
             <ElevationShaderMaterial
-              uMaxElevation={50}
-              uMinElevation={1}
+              uMaxElevation={54}
+              uMinElevation={46}
+              uMidElevation={40}
               wireframe={true}
               side={THREE.DoubleSide}
               {...config}

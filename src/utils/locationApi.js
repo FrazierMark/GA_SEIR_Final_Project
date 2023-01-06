@@ -33,28 +33,3 @@ export async function deleteLocation(locationId) {
         console.log("ERROR: === ", err);
     }
 }
-
-// export function getAll() {
-//     return fetch(BASE_URL, {
-//       headers: {
-//         'Authorization': 'Bearer ' + tokenService.getToken()
-//       }
-//     })
-//     .then(res => {
-//       if(res.ok) return res.json();
-//       throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
-//     })
-//   }
-
-// export function deleteLocation(locationId){
-// 	return fetch(`${BASE_URL}/locations/${locationId}`, {
-// 		method: 'DELETE',
-// 		headers: {
-// 			'Authorization': 'Bearer ' + tokenService.getToken()
-// 		  }
-// 	}).then(res => {
-// 		if(res.ok) return res.json()
-// 		throw new Error('Not logged In! Check Express terminal')
-// 	})
-// }
-
