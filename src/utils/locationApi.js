@@ -9,14 +9,12 @@ const options = {
     }
 }
 
-export function create(location) {
-    return axios.post(BASE_URL, location, options)
-        .then((res) => {
-            console.log("RESPONSE ==== : ", res.data);
-        })
-        .catch((err) => {
-            console.log("ERROR: === ", err)
-        })
+export async function create(location) {
+    try {
+        const res = await axios.post(BASE_URL, location, options);
+    } catch (err) {
+        console.log("ERROR: === ", err);
+    }
 }
 
 export const getAll = async () => {
@@ -28,14 +26,12 @@ export const getAll = async () => {
     }
 }
 
-export function deleteLocation(locationId) {
-    return axios.delete(`${BASE_URL}/${locationId}`, locationId, options)
-        .then((res) => {
-            console.log(res.data);
-        })
-        .catch((err) => {
-            console.log("ERROR: === ", err)
-        })
+export async function deleteLocation(locationId) {
+    try {
+        const res = await axios.delete(`${BASE_URL}/${locationId}`, locationId, options);
+    } catch (err) {
+        console.log("ERROR: === ", err);
+    }
 }
 
 // export function getAll() {
