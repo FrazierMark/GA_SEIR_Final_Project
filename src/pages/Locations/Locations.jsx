@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Plane from "../../components/3DMap/testPlane";
+import Plane from "../../components/3DMap/3DPlane";
 import * as locationsAPI from "../../utils/locationApi";
 import LocationsCard from "../../components/LocationsCard/LocationsCard";
 import Navbar from "../../components/Navbar/Navbar";
