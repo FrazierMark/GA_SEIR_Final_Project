@@ -4,11 +4,6 @@ import { extend, useThree } from '@react-three/fiber'
 import { shaderMaterial } from '@react-three/drei'
 
 
-// Mostly from ->>> @0xca0a (twitter) pmdn.rs - https://codesandbox.io/s/relaxed-edison-46jpyh
-// Inspired from nemutas -  ha-labo-effect - https://github.com/nemutas/ha-labo-effect
-// Inspired from John Beresford - https://www.lab.john-beresford.com/experiments/chaossphere
-
-
 const ElevationShaderMaterialImpl = shaderMaterial(
     {
         uMaxElevation: 90.0,
