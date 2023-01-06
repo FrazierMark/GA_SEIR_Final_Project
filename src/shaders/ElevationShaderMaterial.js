@@ -6,8 +6,9 @@ import { shaderMaterial } from '@react-three/drei'
 
 const ElevationShaderMaterialImpl = shaderMaterial(
     {
-        uMaxElevation: 90.0,
-        uMinElevation: 1.0,
+        uMaxElevation: 54.0,
+        uMinElevation: 46.0,
+        uMidElevation: 40.0,
     },
 
     glsl`
@@ -18,7 +19,8 @@ const ElevationShaderMaterialImpl = shaderMaterial(
    varying vec2 vUv;
    varying float vElevation;
    uniform float uMinElevation;
-uniform float uMaxElevation;
+   uniform float uMidElevation;
+   uniform float uMaxElevation;
 
    //snoise3 function from pragma....
    #pragma glslify: snoise3 = require(glsl-noise/simplex/3d);
@@ -45,15 +47,20 @@ uniform float uMaxElevation;
     uniform vec3 uColor;
     uniform float uMinElevation;
     uniform float uMaxElevation;
+    uniform float uMidElevation;
     varying vec2 vUv;
     varying float vElevation;
+
+    //float intensity = vElevation;
+    // vec4 can be (r, g, b, a) or  (a, y, z, w)
+    // texture is a vec3 + 1.0 which equals a vec4
+
     void main() {
-      float intensity = (vElevation - uMinElevation) / (uMaxElevation - uMinElevation);
-      //float intensity = vElevation;
-      // vec4 can be (r, g, b, a) or  (a, y, z, w)
-      // texture is a vec3 + 1.0 which equals a vec4
-      gl_FragColor = vec4(intensity, intensity, intensity, 1.0); 
-    }`
+        float intensity = (vElevation - uMinElevation) / (uMaxElevation - uMinElevation);
+        vec3 color = mix(vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0), smoothstep(0.0, 1.0, intensity));
+        color = mix(color, vec3(1.0, 1.0, 1.0), smoothstep(0.0, 1.0, intensity - 1.0));
+        gl_FragColor = vec4(color, 1.0);
+}`
 )
 
 
