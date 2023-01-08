@@ -47,11 +47,7 @@ const ElevationShaderMaterialImpl = shaderMaterial(
     uniform float uMaxElevation;
     varying vec2 vUv;
     varying float vElevation;
-
-    //float intensity = vElevation;
-    // vec4 can be (r, g, b, a) or  (a, y, z, w)
-    // texture is a vec3 + 1.0 which equals a vec4
-
+    
     void main() {
         float intensity = (vElevation - uMinElevation) / (uMaxElevation - uMinElevation);
         vec3 color = mix(vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0), smoothstep(0.0, 1.0, intensity));
