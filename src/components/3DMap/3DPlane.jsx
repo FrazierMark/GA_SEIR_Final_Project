@@ -24,7 +24,6 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
   const { ...config } = useControls({
     uMinElevation: { value: 46.0, min: 0, max: 100 },
     uMaxElevation: { value: 54.0, min: 0, max: 100 },
-    uMidElevation: { value: 40.0, min: 0, max: 100 },
   });
 
   const handleClick = () => {
@@ -103,7 +102,6 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
             <ElevationShaderMaterial
               uMaxElevation={54}
               uMinElevation={46}
-              uMidElevation={40}
               wireframe={true}
               side={THREE.DoubleSide}
               {...config}

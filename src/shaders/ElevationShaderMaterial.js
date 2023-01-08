@@ -8,7 +8,6 @@ const ElevationShaderMaterialImpl = shaderMaterial(
     {
         uMaxElevation: 54.0,
         uMinElevation: 46.0,
-        uMidElevation: 40.0,
     },
 
     glsl`
@@ -19,7 +18,6 @@ const ElevationShaderMaterialImpl = shaderMaterial(
    varying vec2 vUv;
    varying float vElevation;
    uniform float uMinElevation;
-   uniform float uMidElevation;
    uniform float uMaxElevation;
 
    //snoise3 function from pragma....
@@ -47,7 +45,6 @@ const ElevationShaderMaterialImpl = shaderMaterial(
     uniform vec3 uColor;
     uniform float uMinElevation;
     uniform float uMaxElevation;
-    uniform float uMidElevation;
     varying vec2 vUv;
     varying float vElevation;
 
