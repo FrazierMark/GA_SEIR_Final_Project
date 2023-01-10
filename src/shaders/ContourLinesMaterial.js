@@ -13,11 +13,9 @@ const ContourLinesMaterialImpl = shaderMaterial(
     },
 
     glsl`
-   // Allows us to determine how much precision GPU uses
    precision mediump float;
 
    //varying allows us to transmit info from vertex shader to the fragment shader
-   vec3    position;
    vec3    color;
    float   config;
    vec3 pos = position;
@@ -39,9 +37,9 @@ const ContourLinesMaterialImpl = shaderMaterial(
     precision mediump float;
     uniform float uDashSeg;
     uniform float uDashDiv;
-    in  vec3    fragColor;
-    in  float   fragLen;
-    out vec4    outColor;
+    vec3    fragColor;
+    float   fragLen;
+    vec4    outColor;
 
     void main(){
         float alpha = 1.0;
