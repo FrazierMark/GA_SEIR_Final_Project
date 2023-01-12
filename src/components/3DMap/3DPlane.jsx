@@ -9,6 +9,7 @@ import glsl from "babel-plugin-glsl/macro";
 import "./Plane.css";
 import { rgbToHeight } from "./PlaneFunctions.jsx";
 import { ElevationShaderMaterial } from "../../shaders/ElevationShaderMaterial";
+import { ContourLinesMaterial } from "../../shaders/ContourLinesMaterial";
 import { useControls } from "leva";
 import Light from "./Light";
 
@@ -24,6 +25,8 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
   const { ...config } = useControls({
     uMinElevation: { value: 46.0, min: 0, max: 100 },
     uMaxElevation: { value: 54.0, min: 0, max: 100 },
+    uDashDiv: { value: 0.4, min: 0, max: 10 },
+    uDashSeg: { value: 1 / 0.07, min: 0, max: 15 },
   });
 
   const handleClick = () => {
@@ -94,14 +97,18 @@ const Plane = ({ lng, lat, zoom, favLocations }) => {
             position={[60, -70, 0]}
             rotation={[4.64, 0, 0]}
           >
-            {/* <meshStandardMaterial
-              color={"hotpink"}
-              wireframe={true}
-              side={THREE.DoubleSide}
-            /> */}
-            <ElevationShaderMaterial
+            {/* <ElevationShaderMaterial
               uMaxElevation={54}
               uMinElevation={46}
+              wireframe={true}
+              side={THREE.DoubleSide}
+              {...config}
+            /> */}
+            <ContourLinesMaterial
+              uMaxElevation={54}
+              uMinElevation={46}
+              uDashDiv={0.4}
+              uDashSeg={1 / 0.07}
               wireframe={true}
               side={THREE.DoubleSide}
               {...config}
