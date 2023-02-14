@@ -22,7 +22,7 @@
 * Heroku
 
 ## Getting Started & Live Link
-* [Geo Map](https://terrainmapp.herokuapp.com/)
+* [Geo Map](https://terrainmapp.herokuapp.com/)  <----- LIVE LINK
 * [Trello Board](https://trello.com/b/ujXYnJu3/gaseifinal)
 * [ERD](https://lucid.app/lucidchart/1fa1d25e-19ee-4f54-8494-bbb127f21541/edit?page=0_0&invitationId=inv_a6b9de1a-f366-4618-99b8-d7ff4984a52d#)
 
